@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.HeaderController">
+   <children>
+      <HBox prefHeight="3.0" prefWidth="881.0" style="-fx-max-height: 3px;">
+         <children>
+            <Region prefHeight="10.0" prefWidth="103.0" styleClass="bg-color-1" />
+            <Region layoutX="10.0" layoutY="10.0" prefHeight="10.0" prefWidth="103.0" styleClass="bg-color-2" />
+            <Region layoutX="113.0" layoutY="10.0" prefHeight="10.0" prefWidth="103.0" styleClass="bg-color-3" />
+            <Region layoutX="216.0" layoutY="10.0" prefHeight="10.0" prefWidth="103.0" styleClass="bg-color-4" />
+            <Region layoutX="319.0" layoutY="10.0" prefHeight="10.0" prefWidth="103.0" styleClass="bg-color-5" />
+            <Region layoutX="422.0" layoutY="10.0" prefHeight="10.0" prefWidth="103.0" styleClass="bg-color-6" />
+            <Region layoutX="525.0" layoutY="10.0" prefHeight="10.0" prefWidth="103.0" styleClass="bg-color-1" />
+            <Region layoutX="628.0" layoutY="10.0" prefHeight="10.0" prefWidth="103.0" styleClass="bg-color-2" />
+            <Region layoutX="731.0" layoutY="10.0" prefHeight="10.0" prefWidth="103.0" styleClass="bg-color-3" />
+            <Region layoutX="786.0" layoutY="10.0" prefHeight="10.0" prefWidth="103.0" styleClass="bg-color-4" />
+            <Region layoutX="796.0" layoutY="10.0" prefHeight="10.0" prefWidth="103.0" styleClass="bg-color-5" />
+            <Region layoutX="810.0" layoutY="10.0" prefHeight="10.0" prefWidth="103.0" styleClass="bg-color-6" />
+            <Region layoutX="817.0" layoutY="10.0" prefHeight="10.0" prefWidth="103.0" styleClass="bg-color-1" />
+            <Region layoutX="823.0" layoutY="10.0" prefHeight="10.0" prefWidth="103.0" styleClass="bg-color-2" />
+            <Region layoutX="829.0" layoutY="10.0" prefHeight="10.0" prefWidth="103.0" styleClass="bg-color-3" />
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="881.0" style="-fx-max-height: 53;" styleClass="bg-color-7">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="77.0">
+               <children>
+                  <Button fx:id="profile" mnemonicParsing="false" text="profile" />
+               </children>
+            </HBox>
+            <Region prefHeight="53.0" prefWidth="397.0" HBox.hgrow="ALWAYS" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="53.0" prefWidth="106.0">
+               <children>
+                  <Button fx:id="loginBtn" mnemonicParsing="false" text="Connexion" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="50.0" right="50.0" />
+         </padding>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="881.0" style="-fx-background-color: white;">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="105.0" prefWidth="145.0">
+               <children>
+                  <Button fx:id="home" contentDisplay="RIGHT" mnemonicParsing="false" text="Button">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets bottom="20.0" right="20.0" top="20.0" />
+               </padding>
+            </HBox>
+            <Region prefHeight="50.0" prefWidth="200.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="85.0" prefWidth="408.0" spacing="20.0">
+               <children>
+                  <ComboBox fx:id="parentMenu" prefHeight="25.0" prefWidth="77.0" onAction="#parentCombo" promptText="Parent" />
+                  <ComboBox fx:id="shopMenu" layoutX="30.0" layoutY="40.0" prefHeight="25.0" onAction="#shopCombo" prefWidth="77.0" promptText="Shop" />
+                  <ComboBox fx:id="eventsMenu" layoutX="107.0" layoutY="40.0" onAction="#eventsCombo" prefHeight="25.0" prefWidth="77.0" promptText="Events" />
+                  <ComboBox fx:id="kidsMenu" layoutX="154.0" layoutY="40.0" onAction="#kidsCombo" prefHeight="25.0" prefWidth="77.0" promptText="Enfant" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="50.0" right="50.0" />
+         </padding>
+      </HBox>
+   </children>
+</VBox>

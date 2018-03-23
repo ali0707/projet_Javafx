@@ -1,0 +1,81 @@
+*{
+   -fx-font-family: 'Open Sans', sans-serif;
+    -fx-font-size: 14px;
+}
+
+.bg-color-1{
+    -fx-background-color: #f0c24b;
+}
+
+.bg-color-2{
+    -fx-background-color: #b5d56a ;
+}
+
+.bg-color-3{
+    -fx-background-color: #ea7066 ;
+}
+
+.bg-color-4{
+    -fx-background-color: #84bed6 ;
+}
+
+.bg-color-5{
+    -fx-background-color: #a597e7 ;
+}
+
+.bg-color-6{
+    -fx-background-color: #ea77ad  ;
+}
+
+.bg-color-7{
+    -fx-background-color:  #2f3c43;
+}
+
+.btn{
+    -fx-border-radius: 6px;
+    -fx-padding: 11px 20px;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+    -fx-effect : dropshadow(gaussian, rgba(0,0,0,0.1), 0, 1.0, 0, 4);
+}
+
+.btn-success{
+    -fx-background-color: #5cb85c;
+    -fx-text-fill: #FFFFFF;
+}
+
+.btn-success:hover{
+    -fx-background-color: #449d44;
+    -fx-effect : dropshadow(gaussian, rgba(0,0,0,0.3), 0, 1.0, 0, 4)
+}
+
+.btn-primary{
+    -fx-background-color: #ea7066;
+    -fx-text-fill: #FFFFFF;
+}
+
+.btn-primary:hover{
+    -fx-effect : dropshadow(gaussian, rgba(0,0,0,0.3), 0, 1.0, 0, 4)
+}
+
+.btn-default{
+    -fx-background-color: white;
+    -fx-text-fill: #666;
+}
+
+.media{
+    -fx-background-radius: 13px;
+    -fx-text-fill: #FFFFFF;
+    -fx-effect : dropshadow(gaussian, rgba(0,0,0,0.1), 0, 1.0, 0, 4);
+}
+
+.media-image{
+    -fx-background-radius: 13px;
+    -fx-border-radius: 13px;
+}
+
+.media-body .label{
+    -fx-text-fill: #FFFFFF;
+    /*-fx-font-weight: 700;*/
+}
