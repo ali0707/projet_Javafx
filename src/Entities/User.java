@@ -190,4 +190,8 @@ public class User {
 
         return Objects.hash(id, username, usernameCanonical, email, emailCanonical, enabled, salt, password, lastLogin, confirmationToken, passwordRequestedAt, roles, infosId, authCode);
     }
+
+    public boolean hasRole(String role){
+        return this.roles.indexOf(role, 0) != -1;
+    }
 }
