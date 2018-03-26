@@ -9,14 +9,17 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class UsersController{
+public class UsersController implements Initializable{
 
     private boolean emailValid = false, usernameValid = false;
 
@@ -132,36 +135,38 @@ public class UsersController{
     }
 
     @FXML
-    public void authenticate(String login, String pass){
-        UserService uc = new UserService();
-        Label loginError = (Label) Main.scene.lookup("#loginError");
-        try {
+    public void authenticate(User u){
+        if(u == null){
+            Label loginError = (Label) Main.scene.lookup("#loginError");
             loginError.setPrefHeight(0);
-            User u =  uc.findLogin(login);
-            Security.checkPassword(pass, u);
-            new Main().showLoading();
-            Main.user = u;
-            Button profileBtn = (Button) Main.sp.lookup("#profileBtn");
-            FontAwesomeIconView signIcon = (FontAwesomeIconView) Main.sp.lookup("#signIcon");
-            signIcon.setIcon(FontAwesomeIcon.SIGN_OUT);
-            Button loginLink = (Button) Main.sp.lookup("#loginLink");
-            loginLink.setPrefWidth(0);
-            Button signOutBtn = (Button) Main.sp.lookup("#signOutBtn");
-            signOutBtn.setPrefWidth(Region.USE_COMPUTED_SIZE);
-            HBox profileHolder = (HBox) Main.scene.lookup("#profileHolder");
-            profileHolder.setPrefWidth(Region.USE_COMPUTED_SIZE);
-            if(u.getUserInfos() != null){
-                profileBtn.setText(u.getFullname());
-                profileBtn.setPrefWidth(Region.USE_COMPUTED_SIZE);
+            UserService uc = new UserService();
+            try {
+                u =  uc.findLogin(loginEmail.getText());
+                Security.checkPassword(loginPass.getText(), u);
+                new Main().showLoading();
+                new IndexController().init();
+            } catch (UserNotFoundException | WrongPasswordException e) {
+                loginError.setText(e.getMessage());
+                loginError.setPrefHeight(Region.USE_COMPUTED_SIZE);
             }
-            else {
-                Button editProfile = (Button) Main.scene.lookup("#editProfileBtn");
-                editProfile.setPrefWidth(Region.USE_COMPUTED_SIZE);
-            }
-            new IndexController().init();
-        } catch (WrongPasswordException | UserNotFoundException e) {
-            loginError.setText(e.getMessage());
-            loginError.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        }
+        Main.user = u;
+        Button profileBtn = (Button) Main.sp.lookup("#profileBtn");
+        FontAwesomeIconView signIcon = (FontAwesomeIconView) Main.sp.lookup("#signIcon");
+        signIcon.setIcon(FontAwesomeIcon.SIGN_OUT);
+        Button loginLink = (Button) Main.sp.lookup("#loginLink");
+        loginLink.setPrefWidth(0);
+        Button signOutBtn = (Button) Main.sp.lookup("#signOutBtn");
+        signOutBtn.setPrefWidth(Region.USE_COMPUTED_SIZE);
+        HBox profileHolder = (HBox) Main.scene.lookup("#profileHolder");
+        profileHolder.setPrefWidth(Region.USE_COMPUTED_SIZE);
+        if(u.getUserInfos() != null){
+            profileBtn.setText(u.getFullname());
+            profileBtn.setPrefWidth(Region.USE_COMPUTED_SIZE);
+        }
+        else {
+            Button editProfile = (Button) Main.scene.lookup("#editProfileBtn");
+            editProfile.setPrefWidth(Region.USE_COMPUTED_SIZE);
         }
     }
 
@@ -179,5 +184,10 @@ public class UsersController{
         Button profileBtn = (Button) Main.sp.lookup("#profileBtn");
         profileBtn.setText("");
         new IndexController().init();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        loginBtn.setOnAction(e -> authenticate(null));
     }
 }

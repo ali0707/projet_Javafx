@@ -18,22 +18,6 @@ import java.util.Random;
 
 public class Security {
 
-    private static Security instance = null;
-
-    private Security(){
-
-    }
-
-    private Security getInstance(){
-        if (instance == null)
-            instance = new Security();
-        return instance;
-    }
-
-//    private boolean login(String username, String password){
-//
-//    }
-
     public static String hashPassword(String pass, String salt){
         String salted = pass  + "{" + salt + "}";
         byte[] digest = hashSHA512(salted.getBytes());
@@ -111,19 +95,17 @@ public class Security {
     }
 
     public static void checkRemembered() {
-        FileInputStream in = null;
-
+        BufferedReader in;
         try {
-            in = new FileInputStream("remembered.txt");
-            int c;
-            while ((c = in.read()) != -1) {
-                User u = new UserService().findUser(c);
+            in = new BufferedReader(new FileReader("./src/assets/remembered.txt"));
+            String c;
+            while ((c = in.readLine()) != null) {
+                System.out.println(c);
+                User u = new UserService().findUser(Integer.parseInt(c));
                 if(u != null)
-                    new UsersController().authenticate();
+                    new UsersController().authenticate(u);
             }
             in.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

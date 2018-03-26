@@ -33,7 +33,7 @@
                <VBox.margin>
                   <Insets top="15.0" />
                </VBox.margin></PasswordField>
-            <Button fx:id="loginBtn" minWidth="-Infinity" mnemonicParsing="false" onAction="#authenticate" prefHeight="48.0" prefWidth="360.0" text="LOG IN" VBox.vgrow="ALWAYS">
+            <Button fx:id="loginBtn" minWidth="-Infinity" mnemonicParsing="false" prefHeight="48.0" prefWidth="360.0" text="LOG IN" VBox.vgrow="ALWAYS">
                <styleClass>
                   <String fx:value="btn-primary" />
                   <String fx:value="btn" />

@@ -35,7 +35,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        Security.checkRemembered();
         window = primaryStage;
         screen = Screen.getPrimary().getBounds();
         sp = new StackPane();
@@ -60,6 +59,7 @@ public class Main extends Application {
         new IndexController().init();
         window.show();
         new HeaderController().init();
+        Security.checkRemembered();
     }
 
     public static void main(String[] args) {
