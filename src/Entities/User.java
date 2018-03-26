@@ -1,7 +1,10 @@
 package Entities;
 
+import Core.Security;
+import Dependencies.pherialize.Pherialize;
+
 import java.sql.Timestamp;
-import java.util.Objects;
+import java.util.*;
 
 public class User {
     private int id;
@@ -16,24 +19,30 @@ public class User {
     private String confirmationToken;
     private Timestamp passwordRequestedAt;
     private String roles;
-    private Integer infosId;
+    private UserInfos userInfos;
     private Integer authCode;
 
-    public User(int id, String username, String usernameCanonical, String email, String emailCanonical, boolean enabled, String salt, String password, Timestamp lastLogin, String confirmationToken, Timestamp passwordRequestedAt, String roles, Integer infosId, Integer authCode) {
+    public User(String username, String password, String email){
+        this.username = username;
+        this.usernameCanonical = username.toLowerCase();
+        this.email = email;
+        this.emailCanonical = email.toLowerCase();
+        this.salt = Security.generateSalt();
+        this.password = Security.hashPassword(password, salt);
+        List<String> list = new ArrayList<String>();
+        list.add("ROLE_PARENT");
+        this.roles = Pherialize.serialize(list);
+    }
+
+    public User(int id, String username, String email, boolean enabled, String salt, String password, Timestamp lastLogin, String roles) {
         this.id = id;
         this.username = username;
-        this.usernameCanonical = usernameCanonical;
         this.email = email;
-        this.emailCanonical = emailCanonical;
         this.enabled = enabled;
         this.salt = salt;
         this.password = password;
         this.lastLogin = lastLogin;
-        this.confirmationToken = confirmationToken;
-        this.passwordRequestedAt = passwordRequestedAt;
         this.roles = roles;
-        this.infosId = infosId;
-        this.authCode = authCode;
     }
 
     public User() {
@@ -147,12 +156,12 @@ public class User {
     }
 
 
-    public Integer getInfosId() {
-        return infosId;
+    public UserInfos getUserInfos() {
+        return userInfos;
     }
 
-    public void setInfosId(Integer infosId) {
-        this.infosId = infosId;
+    public void setUserInfos(UserInfos userInfos) {
+        this.userInfos = userInfos;
     }
 
 
@@ -169,29 +178,22 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User that = (User) o;
-        return id == that.id &&
-                enabled == that.enabled &&
-                Objects.equals(username, that.username) &&
-                Objects.equals(usernameCanonical, that.usernameCanonical) &&
-                Objects.equals(email, that.email) &&
-                Objects.equals(emailCanonical, that.emailCanonical) &&
-                Objects.equals(salt, that.salt) &&
-                Objects.equals(password, that.password) &&
-                Objects.equals(lastLogin, that.lastLogin) &&
-                Objects.equals(confirmationToken, that.confirmationToken) &&
-                Objects.equals(passwordRequestedAt, that.passwordRequestedAt) &&
-                Objects.equals(roles, that.roles) &&
-                Objects.equals(infosId, that.infosId) &&
-                Objects.equals(authCode, that.authCode);
+        return id == that.id;
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, username, usernameCanonical, email, emailCanonical, enabled, salt, password, lastLogin, confirmationToken, passwordRequestedAt, roles, infosId, authCode);
+        return Objects.hash(id);
     }
 
     public boolean hasRole(String role){
         return this.roles.indexOf(role, 0) != -1;
+    }
+
+    public String getFullname() {
+        if (userInfos != null)
+            return this.userInfos.getFirstname() + " " + this.userInfos.getLastname();
+        return username;
     }
 }

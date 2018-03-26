@@ -9,8 +9,19 @@ public class UserInfos {
     private String lastname;
     private int phone;
     private String region;
-    private Integer photoId;
+    private Photo photo;
 
+    public UserInfos() {
+    }
+
+    public UserInfos(int id, String firstname, String lastname, int phone, String region, Photo photo) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.phone = phone;
+        this.region = region;
+        this.photo = photo;
+    }
 
     public int getId() {
         return id;
@@ -57,12 +68,12 @@ public class UserInfos {
     }
 
 
-    public Integer getPhotoId() {
-        return photoId;
+    public Photo getPhoto() {
+        return photo;
     }
 
-    public void setPhotoId(Integer photoId) {
-        this.photoId = photoId;
+    public void setPhoto(Photo photo) {
+        this.photo = photo;
     }
 
     @Override
@@ -70,17 +81,11 @@ public class UserInfos {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserInfos that = (UserInfos) o;
-        return id == that.id &&
-                phone == that.phone &&
-                Objects.equals(firstname, that.firstname) &&
-                Objects.equals(lastname, that.lastname) &&
-                Objects.equals(region, that.region) &&
-                Objects.equals(photoId, that.photoId);
+        return id == that.id;
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(id, firstname, lastname, phone, region, photoId);
+        return Objects.hash(id);
     }
 }

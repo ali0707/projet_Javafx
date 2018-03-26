@@ -1,6 +1,44 @@
+/*@import 'https://fonts.googleapis.com/css?family=Dosis:300,400,600,700,800';*/
+
 *{
    -fx-font-family: 'Open Sans', sans-serif;
     -fx-font-size: 14px;
+    -fx-background-color: white;
+}
+
+.button{
+    -fx-cursor: hand;
+}
+
+.glyph-icon{ -fx-font-family:"FontAwesome"; }
+
+/*.header{*/
+    /*-fx-effect : dropshadow(gaussian, rgba(0,0,0,0.1), 0, 1.0, 0, 4);*/
+/*}*/
+
+.header-buttons{
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.header-buttons .glyph-icon{
+    -fx-fill: white;
+    -fx-font-size: 16px;
+}
+
+.header-icon{
+    -fx-background-color: #84bed6 ;
+}
+
+.top-bar .button{
+    -fx-background-color: none;
+    -fx-font-weight: bold;
+    -fx-text-fill: rgba(255, 255, 255, .8);
+}
+
+.media .glyph-icon{
+    -fx-fill: white;
 }
 
 .bg-color-1{
@@ -27,17 +65,46 @@
     -fx-background-color: #ea77ad  ;
 }
 
+.bdr-color-1{
+    -fx-border-color: #f0c24b;
+}
+
+.bdr-color-2{
+    -fx-border-color: #b5d56a ;
+}
+
+.bdr-color-3{
+    -fx-border-color: #ea7066 ;
+}
+
+.bdr-color-4{
+    -fx-border-color: #84bed6 ;
+}
+
+.bdr-color-5{
+    -fx-border-color: #a597e7 ;
+}
+
+.bdr-color-6{
+    -fx-border-color: #ea77ad  ;
+}
+
 .bg-color-7{
     -fx-background-color:  #2f3c43;
 }
 
 .btn{
     -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
     -fx-padding: 11px 20px;
     -fx-font-size: 16px;
     -fx-font-weight: bold;
     -fx-text-alignment: center;
     -fx-effect : dropshadow(gaussian, rgba(0,0,0,0.1), 0, 1.0, 0, 4);
+}
+
+.link{
+    -fx-background-color: none;
 }
 
 .btn-success{
@@ -47,7 +114,7 @@
 
 .btn-success:hover{
     -fx-background-color: #449d44;
-    -fx-effect : dropshadow(gaussian, rgba(0,0,0,0.3), 0, 1.0, 0, 4)
+    -fx-effect : dropshadow(gaussian, rgba(0,0,0,0.3), 0, 1.0, 0, 4);
 }
 
 .btn-primary{
@@ -56,7 +123,7 @@
 }
 
 .btn-primary:hover{
-    -fx-effect : dropshadow(gaussian, rgba(0,0,0,0.3), 0, 1.0, 0, 4)
+    -fx-effect : dropshadow(gaussian, rgba(0,0,0,0.3), 0, 1.0, 0, 4);
 }
 
 .btn-default{
@@ -64,10 +131,21 @@
     -fx-text-fill: #666;
 }
 
+.btn-default:hover{
+    -fx-effect : dropshadow(gaussian, rgba(0,0,0,0.3), 0, 1.0, 0, 4);
+    -fx-text-fill: #f0c24b;
+}
+
 .media{
     -fx-background-radius: 13px;
     -fx-text-fill: #FFFFFF;
     -fx-effect : dropshadow(gaussian, rgba(0,0,0,0.1), 0, 1.0, 0, 4);
+}
+
+.media-heading{
+    -fx-font-size: 24px;
+    /*-fx-font-weight: 600;*/
+    -fx-font-family: 'Dosis', sans-serif;
 }
 
 .media-image{
@@ -77,5 +155,105 @@
 
 .media-body .label{
     -fx-text-fill: #FFFFFF;
-    /*-fx-font-weight: 700;*/
+    -fx-font-size: 14px;
+/*-fx-font-weight: 700;*/
+}
+
+.header-dropdown {
+    -fx-background-color: #FFFFFF;
+    -fx-border-width: 5px 0 0 0;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-padding: 5px;
+    -fx-opacity: 0;
+}
+
+.header-dropdown.visible{
+    -fx-opacity: 1;
+}
+
+.header-dropdown .button{
+    -fx-background-color: white;
+    -fx-background-radius: 0;
+    -fx-pref-width: 227px;
+    -fx-text-alignment: left;
+    -fx-alignment: top-left;
+}
+
+.header-dropdown.bdr-color-1 .button{
+    -fx-text-fill: #f0c24b;
+}
+
+.header-dropdown.bdr-color-1 .button:hover{
+    -fx-text-fill: white;
+    -fx-background-color: #f0c24b;
+}
+
+.header-dropdown.bdr-color-2 .button{
+    -fx-text-fill: #b5d56a;
+}
+
+.header-dropdown.bdr-color-2 .button:hover{
+    -fx-text-fill: white;
+    -fx-background-color: #b5d56a;
+}
+
+.header-dropdown.bdr-color-3 .button{
+    -fx-text-fill: #ea7066;
+}
+
+.header-dropdown.bdr-color-3 .button:hover{
+    -fx-background-color: #ea7066;
+    -fx-text-fill: white;
+}
+
+.header-dropdown.bdr-color-4 .button{
+    -fx-text-fill: #84bed6;
+}
+
+.header-dropdown.bdr-color-4 .button:hover{
+    -fx-text-fill: white;
+    -fx-background-color: #84bed6;
+}
+
+.loginbox{
+    -fx-background-radius: 7px;
+    -fx-border-radius: 7px;
+    -fx-border-width: 1px;
+    -fx-border-color: #ddd;
+}
+
+.loginbox .text-field{
+    -fx-min-height: 48px;
+    -fx-background-color: white;
+    -fx-border-color: #dddddd;
+    -fx-border-radius: 10px;
+    -fx-padding: 6px 12px;
+    -fx-font-size: 14px;
+}
+
+.loginbox .body{
+    -fx-background-color: white;
+    -fx-background-radius: 0 0 7px 7px;
+    -fx-border-radius: 0 0 7px 7px;
+}
+
+.loginbox .title{
+    -fx-border-radius: 7px 7px 0 0;
+    -fx-background-radius: 7px 7px 0 0;
+    /*-fx-font-family: 'Dosis', sans-serif;*/
+    -fx-font-size: 24px;
+    -fx-text-fill: white;
+}
+
+.loginbox .login-btn{
+    -fx-font-size: 16px;
+}
+
+.loginbox .link{
+    -fx-text-fill: #ea7066;
+}
+
+.loginbox .link:hover{
+    -fx-underline: true;
 }

@@ -1,6 +1,6 @@
 package Services;
 
-import Entities.Image;
+import Entities.Photo;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,14 +8,14 @@ import java.sql.Statement;
 
 public class ImageService extends Service {
 
-    public Image findImage(int id){
+    public Photo findImage(int id){
         String sql = "SELECT * FROM photos WHERE id = "+ id ;
-        Image i = null;
+        Photo i = null;
         try {
             Statement stm = this.connection.createStatement();
             ResultSet rs = stm.executeQuery(sql);
             while(rs.next()){
-                i = new Image();
+                i = new Photo();
                 i.setId(rs.getInt("id"));
                 i.setUrl(rs.getString("url"));
                 i.setAlt(rs.getString("alt"));

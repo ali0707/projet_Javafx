@@ -2,14 +2,14 @@ package Entities;
 
 import java.util.Objects;
 
-public class Image {
+public class Photo {
 
-    public Image(String url, String alt) {
+    public Photo(String url, String alt) {
         this.url = url;
         this.alt = alt;
     }
 
-    public Image(int id, String url, String alt) {
+    public Photo(int id, String url, String alt) {
         this.id = id;
         this.url = url;
         this.alt = alt;
@@ -19,7 +19,7 @@ public class Image {
     private String url;
     private String alt;
 
-    public Image() {
+    public Photo() {
 
     }
 
@@ -51,7 +51,7 @@ public class Image {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Image that = (Image) o;
+        Photo that = (Photo) o;
         return id == that.id &&
                 Objects.equals(url, that.url) &&
                 Objects.equals(alt, that.alt);
