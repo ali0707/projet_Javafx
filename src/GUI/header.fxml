@@ -55,7 +55,7 @@
                </children>
             </HBox>
             <Region prefHeight="53.0" styleClass="bg-color-7" HBox.hgrow="ALWAYS" />
-            <HBox alignment="CENTER_RIGHT" prefHeight="53.0" prefWidth="132.0" styleClass="bg-color-7">
+            <HBox alignment="CENTER_RIGHT" prefHeight="53.0" styleClass="bg-color-7">
                <children>
                   <FlowPane alignment="CENTER" minWidth="-Infinity" prefHeight="33.0" prefWidth="33.0" style="-fx-background-radius: 100%;" styleClass="bg-color-5">
                      <children>

@@ -132,13 +132,13 @@ public class UsersController{
     }
 
     @FXML
-    public void authenticate(){
+    public void authenticate(String login, String pass){
         UserService uc = new UserService();
         Label loginError = (Label) Main.scene.lookup("#loginError");
         try {
             loginError.setPrefHeight(0);
-            User u =  uc.findLogin(loginEmail.getText());
-            Security.checkPassword(loginPass.getText(), u);
+            User u =  uc.findLogin(login);
+            Security.checkPassword(pass, u);
             new Main().showLoading();
             Main.user = u;
             Button profileBtn = (Button) Main.sp.lookup("#profileBtn");
@@ -147,7 +147,7 @@ public class UsersController{
             Button loginLink = (Button) Main.sp.lookup("#loginLink");
             loginLink.setPrefWidth(0);
             Button signOutBtn = (Button) Main.sp.lookup("#signOutBtn");
-            signOutBtn.setPrefWidth(200);
+            signOutBtn.setPrefWidth(Region.USE_COMPUTED_SIZE);
             HBox profileHolder = (HBox) Main.scene.lookup("#profileHolder");
             profileHolder.setPrefWidth(Region.USE_COMPUTED_SIZE);
             if(u.getUserInfos() != null){

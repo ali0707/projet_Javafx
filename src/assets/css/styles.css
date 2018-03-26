@@ -3,7 +3,7 @@
 *{
    -fx-font-family: 'Open Sans', sans-serif;
     -fx-font-size: 14px;
-    -fx-background-color: white;
+    -fx-background-color: none;
 }
 
 .button{

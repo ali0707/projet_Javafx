@@ -1,5 +1,6 @@
 package Core;
 
+import Controllers.UsersController;
 import Core.Exceptions.*;
 import Entities.User;
 import Properties.UserProperty;
@@ -9,7 +10,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.scene.control.TextField;
 
 import javax.xml.bind.DatatypeConverter;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
@@ -109,4 +110,22 @@ public class Security {
         return salt;
     }
 
+    public static void checkRemembered() {
+        FileInputStream in = null;
+
+        try {
+            in = new FileInputStream("remembered.txt");
+            int c;
+            while ((c = in.read()) != -1) {
+                User u = new UserService().findUser(c);
+                if(u != null)
+                    new UsersController().authenticate();
+            }
+            in.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

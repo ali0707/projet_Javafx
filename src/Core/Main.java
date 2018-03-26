@@ -35,12 +35,13 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        Security.checkRemembered();
         window = primaryStage;
         screen = Screen.getPrimary().getBounds();
         sp = new StackPane();
         pane = new BorderPane();
-//        pane.getStylesheets().add("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
-//        pane.getStylesheets().add("https://fonts.googleapis.com/css?family=Dosis:300,400,600,700,800");
+        pane.getStylesheets().add("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
+        pane.getStylesheets().add("https://fonts.googleapis.com/css?family=Dosis:300,400,600,700,800");
         pane.getStylesheets().add("/assets/css/styles.css");
         VBox top = null;
         try {
@@ -49,17 +50,16 @@ public class Main extends Application {
             e.printStackTrace();
         }
         pane.setTop(top);
-        double width = screen.getWidth();
-        double height = screen.getHeight() - 70;
         sp.getChildren().add(pane);
-        scene = new Scene(sp, width, height);
+        scene = new Scene(sp);
         window.setX(screen.getMinX() - 10);
         window.setY(screen.getMinY());
+        window.setMaximized(true);
         window.setTitle("Kidzo");
         window.setScene(scene);
         new IndexController().init();
-        new HeaderController().init();
         window.show();
+        new HeaderController().init();
     }
 
     public static void main(String[] args) {
