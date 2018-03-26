@@ -20,18 +20,23 @@
   <li><strong><a href="https://github.com/kayahr/pherialize">Pherialize</a> :</strong> Pour la de/serialisation des objets comme PHP</li>
 </ul>  
 
-<h4>Creation d'une fonctionnalité :</h4>
+<h4>Utilisation :</h4>
 <ol>
-  <li>Créer un service dans le package services</li>
-  <li>Ajouter "extends CommunService"</li>
-  <li>Implementer les methodes du services</li>
-  <li>Créer l'interface graphique et les méthodes du controlleur</li>
+    <li>Cloner le projet</li>
+    <li>Créer un projet netbeans dans le dossier du projet</li>
+    <li>Ajouter la biliothèque "mysql-connector-java" dans le projet</li> 
+    <li>Changer le nom de la BD dan DBConnection.DBname</li>
+    <li>Ajouter vos fonctionnalités</li>
 </ol>
 
-<h4>Classes importantes</h4>
-<ul>
-  <li><strong>Core/DBConnection :</strong> Fournit la connection avec la BD (vous devez changer le username, password et dbname quand vous faites un clone du projet </li>
-  <li><strong>Services/CommunsService :</strong> Contients les fonctionnalitées communs de tous les services et l'instance de la connection BD
-  </li>
-</ul>
+<h4>Création d'une fonctionnalité :</h4>
+<ol>
+    <li>Ajouter les élements de votre menu dans la partie TODO dans la méthode init() du HeaderController dans le menu correspondant</li>
+    <li>Traiter les actions de clics de chaque bouton du menu</li>
+    <li>Créer un service dans le package services</li>
+    <li>Ajouter "extends Service"</li>
+    <li>Implementer les méthodes du service</li>
+    <li>Créer une interface graphique contenant seulement la partie principale de la page</li>
+    <li>Créer un controlleur avec une méthode init() qui charge le fichier fxml crée et mettre son contenu dans Main.pane.setCenter() (voir IndexController)</li>
+</ol>
   
