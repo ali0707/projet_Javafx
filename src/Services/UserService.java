@@ -57,13 +57,7 @@ public class UserService extends Service {
                 u.setUserInfos(ui);
                 Photo p = null;
                 if (photoId != 0){
-                    rs = stm.executeQuery("SELECT * FROM photos WHERE id =" + photoId);
-                    while (rs.next()){
-                        p = new Photo();
-                        p.setId(photoId);
-                        p.setAlt(rs.getString("alt"));
-                        p.setUrl(rs.getString("url"));
-                    }
+                    p = new PhotoService().findImage(photoId);
                 }
                 ui.setPhoto(p);
             }

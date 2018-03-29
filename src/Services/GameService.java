@@ -1,10 +1,12 @@
 package Services;
 
 import Entities.Game;
+import Entities.Photo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
+import java.util.TimeZone;
 
 public class GameService extends Service {
 
@@ -14,7 +16,7 @@ public class GameService extends Service {
                 "VALUES (?,?,?,?,?,?,?)";
         try {
             PreparedStatement ps = this.connection.prepareStatement(sql);
-            ps.setInt(1, g.getIconId());
+            ps.setInt(1, g.getIcon().getId());
             ps.setString(2, g.getName());
             ps.setString(3, g.getUrl());
             ps.setInt(4, g.getAge());
@@ -35,7 +37,7 @@ public class GameService extends Service {
                 "WHERE game.id = ?";
         try {
             PreparedStatement ps = this.connection.prepareStatement(sql);
-            ps.setInt(1, g.getIconId());
+            ps.setInt(1, g.getIcon().getId());
             ps.setString(2, g.getName());
             ps.setString(3, g.getUrl());
             ps.setInt(4, g.getAge());
@@ -64,7 +66,11 @@ public class GameService extends Service {
                 g.setDevice(rs.getString("device"));
                 g.setCategoryId(rs.getInt("category_id"));
                 g.setGender(rs.getInt("gender"));
-                g.setIconId(rs.getInt("icon_id"));
+                Integer iconId = rs.getInt("icon_id");
+                Photo icon = null;
+                if (iconId != 0)
+                    icon = new PhotoService().findImage(iconId);
+                g.setIcon(icon);
                 g.setName(rs.getString("name"));
                 g.setUrl(rs.getString("url"));
             }
@@ -75,18 +81,23 @@ public class GameService extends Service {
     }
 
     public ObservableList<Game> findAll(){
-        String sql = "SELECT * FROM game";
+        String sql = "SELECT * FROM game LIMIT 30";
         ObservableList<Game> games = FXCollections.observableArrayList();
         try {
             Statement stmt = this.connection.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while(rs.next()){
                 Game g = new Game();
+                g.setId(rs.getInt("id"));
                 g.setAge(rs.getInt("age"));
                 g.setDevice(rs.getString("device"));
                 g.setCategoryId(rs.getInt("category_id"));
                 g.setGender(rs.getInt("gender"));
-                g.setIconId(rs.getInt("icon_id"));
+                Integer iconId = rs.getInt("icon_id");
+                Photo icon = null;
+                if (iconId != 0)
+                    icon = new PhotoService().findImage(iconId);
+                g.setIcon(icon);
                 g.setName(rs.getString("name"));
                 g.setUrl(rs.getString("url"));
                 games.add(g);
@@ -97,4 +108,21 @@ public class GameService extends Service {
         return games;
     }
 
+    public void saveGame(int childId, int gameId, long time) {
+        String sql = "INSERT INTO child_game (child_id, game_id, date, duration)" +
+                "  VALUES (?, ?, ? ,?)";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, childId);
+            ps.setInt(2, gameId);
+            java.util.Date current = new java.util.Date();
+            ps.setDate(3, new Date(current.getTime()));
+            TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
+            Time duration = new Time(time);
+            ps.setTime(4, new Time(time));
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

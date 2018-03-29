@@ -74,7 +74,9 @@ public class Main extends Application {
             Main.sp.setAlignment(Pos.CENTER);
             PauseTransition pt = new PauseTransition(Duration.seconds(2));
             pt.play();
-            pt.setOnFinished(e -> Main.sp.getChildren().remove(loader));
+            pt.setOnFinished(e -> {
+                Main.sp.getChildren().remove(loader);
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }

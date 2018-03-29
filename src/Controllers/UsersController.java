@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class UsersController implements Initializable{
+public class UsersController{
 
     private boolean emailValid = false, usernameValid = false;
 
@@ -64,6 +64,19 @@ public class UsersController implements Initializable{
         VBox center = null ;
         try {
             center = FXMLLoader.load(getClass().getResource("/GUI/login.fxml"));
+            loginBtn = (Button) center.lookup("#loginBtn");
+            loginEmail = (TextField) center.lookup("#loginEmail");
+            loginPass = (PasswordField) center.lookup("#loginPass");
+            loginBtn.setOnAction(e -> {
+                try {
+                    authenticate(null, loginEmail.getText(), loginPass.getText());
+                } catch (UserNotFoundException | WrongPasswordException ex) {
+                    Label loginError = (Label) Main.scene.lookup("#loginError");
+                    loginError.setPrefHeight(0);
+                    loginError.setText(ex.getMessage());
+                    loginError.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                }
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -75,81 +88,81 @@ public class UsersController implements Initializable{
         VBox center = null ;
         try {
             center = FXMLLoader.load(getClass().getResource("/GUI/register.fxml"));
+            Main.pane.setCenter(center);
+            signEmail = (TextField) center.lookup("#signEmail");
+            emailError = (Label) center.lookup("#emailError");
+            signEmail.focusedProperty().addListener((observable, oldValue, newValue) -> {
+                if (!newValue && !signEmail.getText().equals("")){
+                    try {
+                        emailValid = Security.emailValid(signEmail.getText());
+                        emailError.setPrefHeight(0);
+                    } catch (EmailInvalidException | EmailUsedException e) {
+                        emailError.setText(e.getMessage());
+                        emailError.setPrefHeight(25);
+//                    e.printStackTrace();
+                    }
+                }
+            });
+            signUser = (TextField) center.lookup("#signUser");
+            userError = (Label) center.lookup("#userError");
+            signUser.focusedProperty().addListener((observable, oldValue, newValue) -> {
+                if (!newValue && !signUser.getText().equals("")){
+                    try {
+                        usernameValid = Security.usernameValid(signUser.getText());
+                        userError.setPrefHeight(0);
+                    } catch (UsernameInvalidException | UsernameUsedException e) {
+                        userError.setText(e.getMessage());
+                        userError.setPrefHeight(25);
+//                    e.printStackTrace();
+                    }
+                }
+            });
+            signBtn = (Button) center.lookup("#signBtn");
+            signBtn.setOnAction(e -> {
+                firstPass = (PasswordField) Main.pane.lookup("#firstPass");
+                secondPass = (PasswordField) Main.pane.lookup("#secondPass");
+                String passOne = firstPass.getText();
+                String passTwo = secondPass.getText();
+                passError = (Label) Main.sp.lookup("#passError");
+                if( passOne.equals("") || passTwo.equals("") || signEmail.getText().equals("") || signUser.getText().equals("")){
+                    passError.setText("Tous les champs sont obligatoires");
+                    passError.setPrefHeight(25);
+                }
+                else if (!passOne.equals(passTwo)){
+                    passError.setText("Les mots de passe ne sont pas identiques");
+                    passError.setPrefHeight(25);
+                }
+                else if (emailValid && usernameValid){
+                    User u = new User(signUser.getText(), passOne, signEmail.getText());
+                    UserService us = new UserService();
+                    us.registerUser(u);
+                    try {
+                        authenticate(null, signUser.getText(), passOne);
+                    } catch (UserNotFoundException | WrongPasswordException e1) {
+                        e1.printStackTrace();
+                    }
+                    Button loginLink = (Button) Main.pane.lookup("#loginLink");
+                    loginLink.setPrefWidth(0);
+                    Button signOutBtn = (Button) Main.pane.lookup("#signOutBtn");
+                    signOutBtn.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                }
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Main.pane.setCenter(center);
-        signEmail = (TextField) Main.sp.lookup("#signEmail");
-        emailError = (Label) Main.pane.lookup("#emailError");
-        signEmail.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue && !signEmail.getText().equals("")){
-                try {
-                    emailValid = Security.emailValid(signEmail.getText());
-                    emailError.setPrefHeight(0);
-                } catch (EmailInvalidException | EmailUsedException e) {
-                    emailError.setText(e.getMessage());
-                    emailError.setPrefHeight(25);
-//                    e.printStackTrace();
-                }
-            }
-        });
-        signUser = (TextField) Main.sp.lookup("#signUser");
-        userError = (Label) Main.pane.lookup("#userError");
-        signUser.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue && !signUser.getText().equals("")){
-                try {
-                    usernameValid = Security.usernameValid(signUser.getText());
-                    userError.setPrefHeight(0);
-                } catch (UsernameInvalidException | UsernameUsedException e) {
-                    userError.setText(e.getMessage());
-                    userError.setPrefHeight(25);
-//                    e.printStackTrace();
-                }
-            }
-        });
-        signBtn = (Button) Main.sp.lookup("#signBtn");
-        signBtn.setOnAction(e -> {
-            firstPass = (PasswordField) Main.sp.lookup("#firstPass");
-            secondPass = (PasswordField) Main.sp.lookup("#secondPass");
-            String passOne = firstPass.getText();
-            String passTwo = secondPass.getText();
-            passError = (Label) Main.sp.lookup("#passError");
-            if( passOne.equals("") || passTwo.equals("") || signEmail.getText().equals("") || signUser.getText().equals("")){
-                passError.setText("Tous les champs sont obligatoires");
-                passError.setPrefHeight(25);
-            }
-            else if (!passOne.equals(passTwo)){
-                passError.setText("Les mots de passe ne sont pas identiques");
-                passError.setPrefHeight(25);
-            }
-            else if (emailValid && usernameValid){
-                User u = new User(signUser.getText(), passOne, signEmail.getText());
-                UserService us = new UserService();
-                us.registerUser(u);
-                Button loginLink = (Button) Main.sp.lookup("#loginLink");
-                loginLink.setPrefWidth(0);
-                Button signOutBtn = (Button) Main.sp.lookup("#signOutBtn");
-                signOutBtn.setPrefWidth(Region.USE_COMPUTED_SIZE);
-            }
-        });
     }
 
     @FXML
-    public void authenticate(User u){
+    public void authenticate(User u, String login, String pass) throws UserNotFoundException, WrongPasswordException {
         if(u == null){
-            Label loginError = (Label) Main.scene.lookup("#loginError");
-            loginError.setPrefHeight(0);
             UserService uc = new UserService();
-            try {
-                u =  uc.findLogin(loginEmail.getText());
-                Security.checkPassword(loginPass.getText(), u);
-                new Main().showLoading();
-                new IndexController().init();
-            } catch (UserNotFoundException | WrongPasswordException e) {
-                loginError.setText(e.getMessage());
-                loginError.setPrefHeight(Region.USE_COMPUTED_SIZE);
-            }
+            u =  uc.findLogin(login);
+            Security.checkPassword(pass, u);
+            new Main().showLoading();
+            new IndexController().init();
         }
+        new Main().showLoading();
+        new IndexController().init();
         Main.user = u;
         Button profileBtn = (Button) Main.sp.lookup("#profileBtn");
         FontAwesomeIconView signIcon = (FontAwesomeIconView) Main.sp.lookup("#signIcon");
@@ -184,10 +197,5 @@ public class UsersController implements Initializable{
         Button profileBtn = (Button) Main.sp.lookup("#profileBtn");
         profileBtn.setText("");
         new IndexController().init();
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        loginBtn.setOnAction(e -> authenticate(null));
     }
 }

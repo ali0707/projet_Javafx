@@ -100,13 +100,12 @@ public class Security {
             in = new BufferedReader(new FileReader("./src/assets/remembered.txt"));
             String c;
             while ((c = in.readLine()) != null) {
-                System.out.println(c);
                 User u = new UserService().findUser(Integer.parseInt(c));
                 if(u != null)
-                    new UsersController().authenticate(u);
+                    new UsersController().authenticate(u, null, null);
             }
             in.close();
-        } catch (IOException e) {
+        } catch (IOException | UserNotFoundException | WrongPasswordException e) {
             e.printStackTrace();
         }
     }
