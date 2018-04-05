@@ -90,7 +90,14 @@ public class KidsspaceController {
                 toggleMenu();
                 new GameController().showPlanet(centerLayer);
             });
-//            musicBtn.setOnAction(e -> new GameController().showPlanet(backpane));
+            musicBtn.setOnAction(e -> {
+                toggleMenu();
+                new MusicController().showPlanet(centerLayer);
+            });
+            cartoonBtn.setOnAction(e -> {
+                toggleMenu();
+                new CartoonController().showPlanet(centerLayer);
+            });
 //            gameBtn.setOnAction(e -> new GameController().showPlanet(backpane));
             exitBtn.setTranslateX(- Main.scene.getWidth()/2);
             exitBtn.setTranslateY(- Main.scene.getHeight()/2);

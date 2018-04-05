@@ -10,17 +10,14 @@
 
 <VBox alignment="CENTER" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="196.0">
+      <HBox alignment="CENTER" prefHeight="100.0">
          <children>
             <ImageView pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/images/shape-left.png" />
                </image>
             </ImageView>
-            <Label alignment="CENTER" style="-fx-font-family: 'Dosis', sans-serif; -fx-font-size: 36px; -fx-text-fill: #ea7066;" text="L'enfant Ne Pourra Pas Quitter L'espace Sans Votre Permission">
-               <font>
-                  <Font name="System Bold" size="36.0" />
-               </font>
+            <Label alignment="CENTER" styleClass="section-title" text="L'enfant Ne Pourra Pas Quitter L'espace Sans Votre Permission">
                <HBox.margin>
                   <Insets left="15.0" right="15.0" />
                </HBox.margin></Label>
@@ -38,10 +35,7 @@
                   <Image url="@../assets/images/shape-left.png" />
                </image>
             </ImageView>
-            <Label alignment="CENTER" style="-fx-font-family: 'Dosis', sans-serif; -fx-font-size: 36px; -fx-text-fill: #ea7066;" text="Cliquez Pour Commencer">
-               <font>
-                  <Font name="System Bold" size="36.0" />
-               </font>
+            <Label alignment="CENTER" styleClass="section-title" text="Cliquez Pour Commencer">
                <HBox.margin>
                   <Insets left="15.0" right="15.0" />
                </HBox.margin>

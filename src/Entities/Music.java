@@ -9,25 +9,25 @@ public class Music {
     private String title;
     private Integer duration;
     private String singer;
-    private Integer photoId;
+    private Photo photo;
     private String url;
     private String alt;
 
-    public Music(String title, Integer duration, String singer, Integer photoId, String url, String alt) {
+    public Music(String title, Integer duration, String singer, Photo photo, String url, String alt) {
         this.title = title;
         this.duration = duration;
         this.singer = singer;
-        this.photoId = photoId;
+        this.photo = photo;
         this.url = url;
         this.alt = alt;
     }
 
-    public Music(int id, String title, Integer duration, String singer, Integer photoId, String url, String alt) {
+    public Music(int id, String title, Integer duration, String singer, Photo photo, String url, String alt) {
         this.id = id;
         this.title = title;
         this.duration = duration;
         this.singer = singer;
-        this.photoId = photoId;
+        this.photo = photo;
         this.url = url;
         this.alt = alt;
     }
@@ -71,12 +71,12 @@ public class Music {
     }
 
 
-    public Integer getPhotoId() {
-        return photoId;
+    public Photo getPhoto() {
+        return photo;
     }
 
-    public void setPhotoId(Integer photoId) {
-        this.photoId = photoId;
+    public void setPhotoId(Photo photo) {
+        this.photo = photo;
     }
 
 
@@ -106,7 +106,7 @@ public class Music {
                 Objects.equals(title, that.title) &&
                 Objects.equals(duration, that.duration) &&
                 Objects.equals(singer, that.singer) &&
-                Objects.equals(photoId, that.photoId) &&
+                Objects.equals(photo, that.photo) &&
                 Objects.equals(url, that.url) &&
                 Objects.equals(alt, that.alt);
     }
@@ -114,6 +114,10 @@ public class Music {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, title, duration, singer, photoId, url, alt);
+        return Objects.hash(id, title, duration, singer, photo, url, alt);
+    }
+
+    public String getWebPath() {
+        return "C:/xampp/htdocs/PIDEV/web/uploads/music/" + title.replace(" ", "") + ".mp3";
     }
 }

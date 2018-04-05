@@ -2,8 +2,11 @@ package Controllers;
 
 import Core.Main;
 import Entities.Child;
+import Entities.ChildGame;
+import Entities.Game;
 import Entities.Photo;
 import Services.ChildService;
+import Services.GameService;
 import Services.PhotoService;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -76,7 +79,7 @@ public class KidsController {
                     description.setText("Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor");
                     more = (Button) card.lookup("#more");
                     int finalJ = j;
-//                    more.setOnAction(e -> this.showMore(mykids.get(finalJ)));
+                    more.setOnAction(e -> this.showActivity(mykids.get(finalJ)));
                     space = (Button) card.lookup("#space");
                     space.setOnAction(e -> this.showSpace(mykids.get(finalJ)));
                     list.add(card, j, i);
@@ -89,6 +92,34 @@ public class KidsController {
         ScrollPane sp = new ScrollPane();
         sp.setContent(center);
         Main.pane.setCenter(sp);
+    }
+
+    private void showActivity(Child child) {
+        ScrollPane center = new ScrollPane();
+        try {
+            center = FXMLLoader.load(getClass().getResource("/GUI/child-activity.fxml"));
+            center.setFitToHeight(true);
+            VBox gameList = (VBox) center.getContent().lookup("#gameList");
+            ObservableList<ChildGame> recent = new GameService().getRecent(child.getId());
+            for(int i = 0; i< recent.size(); i++){
+                ChildGame cg = recent.get(i);
+                HBox game = FXMLLoader.load(getClass().getResource("/GUI/game-list-item.fxml"));
+                ImageView image = (ImageView) game.lookup("#image");
+                if (cg.getGame().getIcon() != null)
+                    image.setImage(new Image(cg.getGame().getIcon().getWebPath()));
+                Label name = (Label) game.lookup("#name");
+                name.setText(cg.getGame().getName());
+                Label date = (Label) game.lookup("#date");
+                date.setText(date.getText() + " " + cg.getDate().toString());
+                Label duration = (Label) game.lookup("#duration");
+                duration.setText(duration.getText() + " " + cg.getDuration().toString());
+                gameList.getChildren().add(game);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        center.setFitToHeight(false);
+        Main.pane.setCenter(center);
     }
 
 //    private void showMore(Child child) {

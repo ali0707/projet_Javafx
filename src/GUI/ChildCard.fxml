@@ -18,7 +18,7 @@
          </effect></ImageView>
       <VBox maxHeight="270.0" maxWidth="267.5" minWidth="-Infinity" prefHeight="270.0" prefWidth="287.5" styleClass="card-body">
          <children>
-            <Label fx:id="name" style="-fx-font-family: 'Dosis', sans-serif; -fx-font-size: 24px;" styleClass="card-heading" text="Name" textFill="WHITE">
+            <Label fx:id="name" styleClass="card-heading" text="Name" textFill="WHITE">
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin>

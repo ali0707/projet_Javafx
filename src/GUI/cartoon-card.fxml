@@ -24,6 +24,7 @@
       <VBox styleClass="card-body">
          <children>
             <Label fx:id="name" styleClass="card-heading" text="Label" />
+            <Label fx:id="episodes" text="Label" />
          </children>
          <padding>
             <Insets bottom="30.0" left="30.0" right="30.0" />

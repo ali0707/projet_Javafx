@@ -12,7 +12,7 @@ public class DBConnection {
     private Connection connection;
     public static DBConnection instance = null;
 
-    private String DBname = "kidz-java";
+    private String DBname = "kidz";
     private String user = "root";
     private String pass = "";
 

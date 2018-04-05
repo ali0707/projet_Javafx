@@ -1,5 +1,6 @@
 package Services;
 
+import Entities.ChildGame;
 import Entities.Game;
 import Entities.Photo;
 import javafx.collections.FXCollections;
@@ -84,8 +85,8 @@ public class GameService extends Service {
         String sql = "SELECT * FROM game LIMIT 30";
         ObservableList<Game> games = FXCollections.observableArrayList();
         try {
-            Statement stmt = this.connection.createStatement();
-            ResultSet rs = stmt.executeQuery(sql);
+            Statement stm = connection.createStatement();
+            ResultSet rs = stm.executeQuery(sql);
             while(rs.next()){
                 Game g = new Game();
                 g.setId(rs.getInt("id"));
@@ -118,11 +119,47 @@ public class GameService extends Service {
             java.util.Date current = new java.util.Date();
             ps.setDate(3, new Date(current.getTime()));
             TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
-            Time duration = new Time(time);
             ps.setTime(4, new Time(time));
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public ObservableList<ChildGame> getRecent(int childId){
+        String sql = "SELECT game.id gid, icon_id, name, url, age, device, url,category_id, gender, cg.id cid, date, duration , child_id " +
+                "FROM game LEFT JOIN child_game cg ON cg.game_id = game.id " +
+                "WHERE cg.child_id = " + childId + " ORDER BY cg.date DESC ";
+        ObservableList<ChildGame> childGames = FXCollections.observableArrayList();
+        try {
+            Statement stm = connection.createStatement();
+            ResultSet rs = stm.executeQuery(sql);
+            while(rs.next()){
+                ChildGame cg = new ChildGame();
+                cg.setId(rs.getInt("cid"));
+                cg.setChildId(rs.getInt("child_id"));
+                cg.setDate(rs.getDate("date"));
+                cg.setDuration(rs.getTime("duration"));
+                Game g = new Game();
+                g.setId(rs.getInt("gid"));
+                g.setAge(rs.getInt("age"));
+                g.setDevice(rs.getString("device"));
+                g.setCategoryId(rs.getInt("category_id"));
+                g.setGender(rs.getInt("gender"));
+                Integer iconId = rs.getInt("icon_id");
+                Photo icon = null;
+                if (iconId != 0) {
+                    icon = new PhotoService().findImage(iconId);
+                }
+                g.setIcon(icon);
+                g.setName(rs.getString("name"));
+                g.setUrl(rs.getString("url"));
+                cg.setGame(g);
+                childGames.add(cg);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return childGames;
     }
 }

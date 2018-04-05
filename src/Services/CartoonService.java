@@ -1,6 +1,8 @@
 package Services;
 
 import Entities.Cartoon;
+import Entities.Photo;
+import Entities.Video;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -14,7 +16,7 @@ public class CartoonService extends Service {
                         "VALUES (?,?,?,?,?,?)";
         try {
             PreparedStatement ps = this.connection.prepareStatement(sql);
-            ps.setInt(1, c.getPhotoId());
+            ps.setInt(1, c.getPhoto().getId());
             ps.setString(2, c.getName());
             ps.setString(3, c.getSummary());
             ps.setInt(4, c.getAge());
@@ -34,7 +36,7 @@ public class CartoonService extends Service {
                         "WHERE cartoon.id = ?";
         try {
             PreparedStatement ps = this.connection.prepareStatement(sql);
-            ps.setInt(1, c.getPhotoId());
+            ps.setInt(1, c.getPhoto().getId());
             ps.setString(2, c.getName());
             ps.setString(3, c.getSummary());
             ps.setInt(4, c.getAge());
@@ -49,7 +51,6 @@ public class CartoonService extends Service {
 
     public Cartoon findCartoon(int id){
         String sql = "SELECT * FROM cartoon WHERE id = "+ id ;
-
         Cartoon c = null;
         try {
             Statement stm = this.connection.createStatement();
@@ -61,7 +62,12 @@ public class CartoonService extends Service {
                 c.setGender(rs.getInt("gender"));
                 c.setName(rs.getString("name"));
                 c.setSummary(rs.getString("summary"));
-                c.setPhotoId(rs.getInt("photo_id"));
+                int photoId = rs.getInt("photo_id");
+                Photo p = null;
+                if (photoId != 0){
+                    p = new PhotoService().findImage(photoId);
+                }
+                c.setPhoto(p);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -83,7 +89,12 @@ public class CartoonService extends Service {
                 c.setName(rs.getString("name"));
                 c.setSummary(rs.getString("summary"));
                 c.setEpisodesCnt(rs.getInt("episodesCnt"));
-                c.setPhotoId(rs.getInt("photo_id"));
+                int photoId = rs.getInt("photo_id");
+                Photo p = null;
+                if (photoId != 0){
+                    p = new PhotoService().findImage(photoId);
+                }
+                c.setPhoto(p);
                 cartoons.add(c);
             }
         } catch (SQLException e) {
@@ -92,4 +103,27 @@ public class CartoonService extends Service {
         return cartoons;
     }
 
+    public ObservableList<Video> findEpisodes(int id) {
+            String sql = "SELECT * FROM video WHERE cartoon_id = " + id;
+            ObservableList<Video> episodes = FXCollections.observableArrayList();
+            try {
+                Statement stmt = this.connection.createStatement();
+                ResultSet rs = stmt.executeQuery(sql);
+                while(rs.next()){
+                    Video v = new Video();
+                    v.setId(rs.getInt("id"));
+                    v.setUrl(rs.getString("url"));
+                    v.setTitle(rs.getString("title"));
+                    v.setViews(rs.getInt("views"));
+                    v.setViews(rs.getInt("views"));
+                    v.setDate(rs.getDate("date"));
+                    v.setCartoonId(rs.getInt("cartoon_id"));
+                    v.setCategoryId(rs.getInt("category_id"));
+                    episodes.add(v);
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return episodes;
+    }
 }

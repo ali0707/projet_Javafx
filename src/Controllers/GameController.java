@@ -3,29 +3,22 @@ package Controllers;
 import Core.Main;
 import Dependencies.pherialize.Pherialize;
 import Entities.Game;
-import Entities.Photo;
 import Services.GameService;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.geometry.Rectangle2D;
-import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class GameController extends PlanetController{
@@ -49,8 +42,7 @@ public class GameController extends PlanetController{
             content = FXMLLoader.load(getClass().getResource("/GUI/game-list.fxml"));
             content.setMaxWidth(Main.scene.getWidth());
             ScrollPane sp2 = (ScrollPane) content.getChildren().get(1);
-            GameService gs = new GameService();
-            ObservableList<Game> games = gs.findAll();
+            ObservableList<Game> games = new GameService().findAll();
             VBox listContainer = (VBox) sp2.getContent();
             gameList =  new GridPane();
             ColumnConstraints cc = new ColumnConstraints();
@@ -123,6 +115,8 @@ public class GameController extends PlanetController{
             closeBtn.setTranslateX(Main.scene.getWidth()/2);
             closeBtn.setTranslateY(- Main.scene.getHeight()/2);
             StackPane finalContent = content;
+            WebEngine engine = wv.getEngine();
+            engine.load(g.getUrl());
             closeBtn.setOnAction(e -> {
                 new GameService().saveGame(
                         KidsspaceController.getChild().getId(),
@@ -130,10 +124,8 @@ public class GameController extends PlanetController{
                         System.currentTimeMillis() - start
                 );
                 GameController.planet.getChildren().remove(finalContent);
-
+                engine.load("");
             });
-            WebEngine engine = wv.getEngine();
-            engine.load(g.getUrl());
         } catch (IOException e) {
             e.printStackTrace();
         }

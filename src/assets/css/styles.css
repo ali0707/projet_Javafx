@@ -1,18 +1,28 @@
 /*@import 'https://fonts.googleapis.com/css?family=Dosis:300,400,600,700,800';*/
 
 *{
-   -fx-font-family: 'Open Sans', sans-serif;
-    -fx-font-size: 14px;
+   /*-fx-font-family: 'Open Sans', sans-serif;*/
+    /*-fx-font-size: 14px;*/
     -fx-background-color: none;
     -fx-stroke-miter-limit: 20;
 }
 
 .button{
+    -fx-font-size: 14px;
+    -fx-font-family: 'Open Sans', sans-serif;
     -fx-cursor: hand;
 }
 
-.glyph-icon.fa { -fx-font-family:"FontAwesome";}
+.container{
+    -fx-padding: 50px;
+}
+
+.label{
+    -fx-font-size: 14px;
+}
+
 .glyph-icon { -fx-font-family:"FontAwesome";}
+.glyph-icon.fa { -fx-font-family:"FontAwesome";}
 .glyph-icon.material { -fx-font-family:"Material Design Icons";}
 
 /*.header{*/
@@ -110,6 +120,15 @@
     -fx-background-color: none;
 }
 
+.btn-info{
+    -fx-background-color: #5bc0de ;
+    -fx-text-fill: #FFFFFF;
+}
+
+.btn-info:hover{
+    -fx-background-color: #31b0d5;
+}
+
 .btn-success{
     -fx-background-color: #5cb85c;
     -fx-text-fill: #FFFFFF;
@@ -121,6 +140,26 @@
 }
 
 .btn-primary{
+    -fx-background-color: #ea7066;
+    -fx-text-fill: #FFFFFF;
+}
+
+.btn-primary-outline{
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #ea7066;
+    -fx-border-color: #ea7066;
+    -fx-border-width: 1px;
+}
+
+.btn-primary-outline .glyph-icon{
+    -fx-fill: #ea7066;
+}
+
+.btn-primary-outline:hover .glyph-icon{
+    -fx-fill: #ea7066;
+}
+
+.btn-primary-outline:hover{
     -fx-background-color: #ea7066;
     -fx-text-fill: #FFFFFF;
 }
@@ -140,10 +179,38 @@
 }
 
 .card{
+    -fx-pref-height: 100%;
+    -fx-pref-width: 100%;
     -fx-background-radius: 13px;
     -fx-text-fill: #FFFFFF;
     -fx-effect : dropshadow(gaussian, rgba(0,0,0,0.1), 0, 1.0, 0, 4);
 }
+
+.card-default{
+    -fx-background-color: #f8f8f8;
+    -fx-text-fill: #000000;
+}
+
+.card-horizontal .card-body{
+    -fx-padding: 0 50 0 50;
+}
+
+.card-default .card-body .label{
+    -fx-text-fill: inherit;
+}
+
+.card-default .glyph-icon{
+    -fx-fill: #000000;
+}
+
+.card-default .label.card-heading{
+    -fx-text-fill: #f0c24b;
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 15 0;
+    -fx-font-family: 'Dosis', sans-serif;
+}
+
 
 .card.bg-color-1 .card-image-overlay{
     -fx-fill: #f0c24b;
@@ -195,12 +262,19 @@
 
 .card-body .label.card-heading{
     -fx-font-family: 'Dosis', sans-serif;
-    -fx-font-size: 24px;
+    -fx-font-size: 24;
+    -fx-font-weight: bold;
 }
 
 .card-image{
     -fx-background-radius: 13px;
     -fx-border-radius: 13px;
+    -fx-border-width: 0 0 2px 0;
+    -fx-border-color: #dddddd;
+}
+
+.card-body{
+    -fx-padding: 30px;
 }
 
 .card-body .label{
@@ -223,11 +297,16 @@
 }
 
 .header-dropdown .button{
+    -fx-padding: 10px 12px;
     -fx-background-color: white;
     -fx-background-radius: 0;
     -fx-pref-width: 227px;
     -fx-text-alignment: left;
     -fx-alignment: top-left;
+}
+
+.header-dropdown .button:hover{
+    -fx-padding: 10px 12px 10px 22px;
 }
 
 .header-dropdown.bdr-color-1 .button{
@@ -309,6 +388,7 @@
 }
 
 .menu-btn{
+    -fx-padding: 10px 12px;
     -fx-background-radius: 100%;
     -fx-effect: dropshadow(gaussian, grey, 10, 0, -5, 5);
 }
@@ -343,16 +423,12 @@
     -fx-fill: white;
 }
 
-.enter-btn{
+.btn-info.enter{
     -fx-background-color: #5bc0de ;
     -fx-background-radius: 0;
     -fx-text-fill: white;
-    -fx-font-size: 186px;
+    -fx-font-size: 16px;
     -fx-font-weight: bold;
-}
-
-.enter-btn:hover{
-    -fx-background-color: #31b0d5;
 }
 
 .planet-list{
@@ -370,4 +446,42 @@
 .planet-list .label.title{
     -fx-font-family: 'Dosis', sans-serif;
     -fx-font-size: 34px;
+}
+
+.section-title{
+    -fx-padding: 50;
+    -fx-font-family: 'Dosis', sans-serif;
+    -fx-font-size: 36px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #ea7066;
+}
+
+
+.label.music-header{
+    -fx-font-family: "Helvetica Neue", "Futura", "Trebuchet MS", Arial;
+    -fx-font-size: 34px;
+    -fx-text-fill: white;
+}
+
+.playlist{
+    -fx-background-color: rgba(0, 0, 0, 0.5);
+}
+
+.playlist .button{
+    -fx-font-family: "Helvetica Neue", "Futura", "Trebuchet MS", Arial;
+    -fx-text-fill: white;
+    -fx-font-size: 50;
+    -fx-font-weight: 700;
+    -fx-pref-height: 120px;
+}
+
+.playlist .button:hover{
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
+.cartoon-title{
+    -fx-font-family: "Open Sans", sans-serif;
+    -fx-font-size: 34px;
+    -fx-font-weight: 700;
+    -fx-padding: 20;
 }

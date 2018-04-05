@@ -1,14 +1,14 @@
 package Entities;
 
+import java.sql.Date;
 import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.Objects;
 
 public class ChildGame {
     private int id;
     private Integer childId;
-    private Integer gameId;
-    private Timestamp date;
+    private Game game;
+    private Date date;
     private Time duration;
 
 
@@ -30,20 +30,20 @@ public class ChildGame {
     }
 
 
-    public Integer getGameId() {
-        return gameId;
+    public Game getGame() {
+        return game;
     }
 
-    public void setGameId(Integer gameId) {
-        this.gameId = gameId;
+    public void setGame(Game game) {
+        this.game = game;
     }
 
 
-    public Timestamp getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -63,7 +63,7 @@ public class ChildGame {
         ChildGame that = (ChildGame) o;
         return id == that.id &&
                 Objects.equals(childId, that.childId) &&
-                Objects.equals(gameId, that.gameId) &&
+                Objects.equals(game, that.game) &&
                 Objects.equals(date, that.date) &&
                 Objects.equals(duration, that.duration);
     }
@@ -71,6 +71,6 @@ public class ChildGame {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, childId, gameId, date, duration);
+        return Objects.hash(id, childId, game, date, duration);
     }
 }

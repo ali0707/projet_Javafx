@@ -33,7 +33,7 @@ public class PlanetController {
             Label subTitle = (Label) planet.lookup("#subTitle");
             subTitle.setText(this.subTitleText);
             VBox container = (VBox) planet.lookup("#container");
-            enterBtn.getStyleClass().addAll("btn", "enter-btn");
+            enterBtn.getStyleClass().addAll("btn", "btn-info");
             container.getChildren().add(enterBtn);
         } catch (IOException e) {
             e.printStackTrace();
