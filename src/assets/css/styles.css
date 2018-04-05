@@ -21,6 +21,22 @@
     -fx-font-size: 14px;
 }
 
+.input{
+    -fx-border-color: #dedede;
+    -fx-text-fill: #666;
+    -fx-font-size: 14px;
+    -fx-font-family: "Open Sans", sans-serif;
+    -fx-padding: 0 0 0 20px;
+    -fx-prompt-text-fill: #666;
+    -fx-border-radius: 10px;
+    -fx-border-width: 3px;
+    -fx-pref-height: 50px;
+}
+
+.select-dropdown{
+
+}
+
 .glyph-icon { -fx-font-family:"FontAwesome";}
 .glyph-icon.fa { -fx-font-family:"FontAwesome";}
 .glyph-icon.material { -fx-font-family:"Material Design Icons";}
@@ -479,9 +495,52 @@
     -fx-background-color: rgba(255, 255, 255, 0.1);
 }
 
+.combo-box .text-field{
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+}
+
 .cartoon-title{
     -fx-font-family: "Open Sans", sans-serif;
     -fx-font-size: 34px;
     -fx-font-weight: 700;
     -fx-padding: 20;
+}
+
+.combo-box .list-cell
+{
+    -fx-cursor: hand;
+    -fx-background: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-font-family: "Open Sans", sans-serif;
+    -fx-text-fill: #969696;
+}
+
+.combo-box-popup .list-view
+{
+    -fx-background-color: white;
+    -fx-background-radius: 4px;
+    -fx-border-color: #dedede;
+    -fx-border-radius: 4px;
+    -fx-border-width: 1px 1px 0 1px ;
+}
+
+.combo-box-popup .list-view .list-cell
+{
+    -fx-padding: 11px 17px;
+    -fx-pref-height: 40px;
+    -fx-background-color: white;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: #dedede;
+    -fx-font-size: 12px;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected,
+.combo-box-popup .list-view .list-cell:filled:hover,
+.combo-box-popup .list-view .list-cell:filled:selected:hover
+{
+    -fx-cursor: hand;
+    -fx-background-color: #f5f5f5;
+    -fx-text-fill: #ea7066;
 }
