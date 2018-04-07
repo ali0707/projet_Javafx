@@ -1,0 +1,220 @@
+*{
+    -fx-text-fill: #505050;
+    -fx-background-color: inherit;
+    -fx-border-width: 0;
+}
+
+
+.glyph-icon { -fx-font-family:"FontAwesome";}
+.glyph-icon.ma{ -fx-font-family:"Material Design Icons";}
+
+.sidebar{
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 5,0, 2, 0);
+}
+
+.sidebar .tree-view, .sidebar{
+    -fx-background-color: #f8f8f8;
+}
+
+.sidebar .tree-cell{
+    -fx-font-family: "Roboto", sans-serif;
+    -fx-font-size: 14px;
+    -fx-font-weight: 400;
+    -fx-padding: 12px 20px;
+    -fx-indent: 0;
+}
+
+/*.sidebar .tree-cell .tree-cell{*/
+    /*-fx-padding: 50px;*/
+    /*-fx-text-fill: #ec407a;*/
+/*}*/
+
+.sidebar .tree-cell .tree-cell{
+    -fx-indent: 150px;
+    /*-fx-text-fill: #ec407a;*/
+    /*-fx-border-width: 0 0 0 2px;*/
+    /*-fx-border-color: #ec407a;*/
+}
+
+.sidebar .tree-cell:filled:hover, .sidebar .tree-cell:selected:filled{
+    -fx-font-size: 14px;
+    -fx-background-color: #6059EE;
+    -fx-text-fill: white;
+}
+
+.sidebar .tree-cell{
+    -fx-background-color: #f8f8f8;
+}
+
+.sidebar .tree-cell:selected .glyph-icon, .sidebar .tree-cell:hover .glyph-icon{
+    -fx-fill: white;
+}
+
+
+.topbar{
+    -fx-background-color: white;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: #e3e1e1;
+}
+
+.container {
+    -fx-padding: 20px 50px;
+    -fx-background-color: white;
+}
+
+.panel{
+    -fx-font-size: 14px;
+    -fx-border-width: 1px;
+    -fx-border-color: #ddd;
+}
+
+.panel .panel-heading{
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: #dddddd;
+    -fx-pref-height: 53px;
+    -fx-padding: 15px 30px;
+    -fx-font-size: 16px;
+    -fx-font-family: "Roboto", sans-serif;
+}
+
+.panel .panel-body{
+    -fx-padding: 20px 30px;
+}
+
+.panel .panel-footer{
+    -fx-background-color: #f5f5f5;
+    -fx-padding: 10px 15px;
+    -fx-pref-height: 60px;
+    -fx-alignment: center-left;
+}
+
+.table-view .column-header{
+    -fx-border-width: 1px;
+    -fx-border-color: #dddddd;
+}
+
+.table-view .column-header .label{
+    -fx-padding: 8px 10px;
+    -fx-alignment: center-left;
+    -fx-background-color: transparent;
+    -fx-font-size: 12px;
+    -fx-font-family: "Source Sans Pro", sans-serif;
+}
+
+.table-view .table-row-cell:filled .table-cell{
+    -fx-border-color: #dddddd;
+    -fx-border-width: 1px;
+    -fx-padding: 8px 10px;
+    -fx-text-alignment: left;
+    -fx-font-size: 14px;
+}
+
+.table-row-cell:even .table-cell:filled{
+    -fx-background-color: -fx-table-cell-border-color, #f3f3f3;
+}
+
+.table-row-cell:hover .table-cell:filled {
+    -fx-background-color: #f5f5f5;
+}
+
+.input{
+    -fx-border-color: #ccc;
+    -fx-border-width: 1px;
+}
+
+.combo-box .list-cell
+{
+    -fx-cursor: hand;
+    -fx-background: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-font-family: "Source Sans Pro", sans-serif;
+}
+
+.combo-box-popup .list-view
+{
+    -fx-pref-width: 50px;
+    -fx-background-color: white;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1px;
+}
+
+.combo-box-popup .list-view .list-cell
+{
+    -fx-background-color: white;
+    -fx-font-size: 14px;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected,
+.combo-box-popup .list-view .list-cell:filled:hover,
+.combo-box-popup .list-view .list-cell:filled:selected:hover
+{
+    -fx-cursor: hand;
+    -fx-background-color: dodgerblue;
+    -fx-text-fill: white;
+}
+
+.btn{
+    -fx-font-size: 14px;
+    -fx-padding: 6px 12px;
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+    -fx-border-radius: 3px;
+}
+
+.btn-default{
+    -fx-text-fill: #333;
+    -fx-background-color: white;
+    -fx-border-width: 1px;
+    -fx-border-color: #ccc;
+}
+
+.btn-default:hover{
+    -fx-background-color: #e6e6e6;
+}
+
+.btn-blue{
+    -fx-text-fill: #FFFFFF;
+    -fx-background-color: #0057a1;
+}
+
+.btn-blue:hover{
+    -fx-background-color: #003b6e;
+}
+
+.btn-success{
+    -fx-background-color: #029b17;
+    -fx-text-fill: white;
+}
+
+.btn-success:hover{
+    -fx-background-color: #016910;
+}
+
+.paginator .button{
+    -fx-font-family: "Source Sans Pro", sans-serif;
+    -fx-border-color: #6059ee;
+    -fx-border-width: 1px 1px 1px 0;
+    -fx-text-fill: #6059ee;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+}
+
+.paginator .button.active{
+    -fx-background-color: #6059ee;
+    -fx-text-fill: white;
+}
+
+.paginator .btn-next{
+    -fx-border-radius: 0 3px 3px 0;
+}
+
+.paginator .btn-prev{
+    -fx-border-width: 1px;
+    -fx-border-radius: 3px 0 0 3px;
+}
+
+.label.form-label{
+    -fx-font-family: "Source Sans Pro", sans-serif;
+    -fx-font-weight: bold;
+}

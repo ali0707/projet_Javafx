@@ -99,6 +99,18 @@ public class KidsController {
         try {
             center = FXMLLoader.load(getClass().getResource("/GUI/child-activity.fxml"));
             center.setFitToHeight(true);
+//            Barchbarchart("Unit Sales Q2 2016", CategoryAxis(), NumberAxis()) {
+//                series("Product X") {
+//                    data("MAR", 10245)
+//                    data("APR", 23963)
+//                    data("MAY", 15038)
+//                }
+//                series("Product Y") {
+//                    data("MAR", 28443)
+//                    data("APR", 22845)
+//                    data("MAY", 19045)
+//                }
+//            }
             VBox gameList = (VBox) center.getContent().lookup("#gameList");
             ObservableList<ChildGame> recent = new GameService().getRecent(child.getId());
             for(int i = 0; i< recent.size(); i++){

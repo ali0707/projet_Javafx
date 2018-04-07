@@ -50,7 +50,7 @@ public class GameController extends PlanetController{
             gameList.getColumnConstraints().addAll(cc,cc,cc,cc);
             gameList.setHgap(30);
             gameList.setVgap(30);
-            gameList.setMaxWidth(Main.scene.getWidth()-350);
+            gameList.setPrefWidth(Main.scene.getWidth()-350);
             gameList.setPadding(new Insets(10));
             for (int i = 0; i < games.size(); i++) {
                 for (int j = 0; j < 4 && i*4+j < games.size(); j++) {

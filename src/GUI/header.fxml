@@ -52,6 +52,19 @@
                         <Insets left="5.0" right="5.0" />
                      </padding>
                   </Button>
+                  <HBox fx:id="adminLink" alignment="CENTER_LEFT" minWidth="0.0" prefWidth="0.0">
+                     <children>
+                        <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="33.0" prefWidth="33.0" style="-fx-background-radius: 100%;" styleClass="bg-color-3">
+                           <children>
+                              <FontAwesomeIconView fill="WHITE" glyphName="COGS" size="16" />
+                           </children>
+                           <HBox.margin>
+                              <Insets bottom="10.0" top="10.0" />
+                           </HBox.margin>
+                        </FlowPane>
+                        <Button fx:id="adminBtn" alignment="BOTTOM_LEFT" contentDisplay="TOP" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" text="Administration" />
+                     </children>
+                  </HBox>
                </children>
             </HBox>
             <Region prefHeight="53.0" styleClass="bg-color-7" HBox.hgrow="ALWAYS" />
@@ -109,7 +122,7 @@
                               <FontAwesomeIconView glyphName="HOME" layoutX="13.0" layoutY="25.0" size="16.0" wrappingWidth="11.0" />
                            </children>
                         </AnchorPane>
-                        <Label alignment="CENTER" prefHeight="20.0" prefWidth="112.0" style="-fx-border-color: #ea7066; -fx-border-width: 0 2px 0 0; -fx-font-size: 15px;" text="Parentalité" />
+                        <Label alignment="CENTER" prefHeight="20.0" prefWidth="112.0" style="-fx-border-color: #ea7066; -fx-border-width: 0 2px 0 0;" text="Parentalité" />
                      </children>
                   </VBox>
                   <VBox fx:id="shopToggle" alignment="CENTER" prefHeight="100.0" prefWidth="109.0" styleClass="header-buttons" stylesheets="@../assets/css/styles.css">

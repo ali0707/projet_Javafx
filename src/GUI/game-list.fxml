@@ -11,7 +11,7 @@
       <ScrollPane minWidth="-Infinity" prefWidth="250.0" styleClass="bg-color-4" />
       <ScrollPane styleClass="planet-list">
          <content>
-            <VBox fx:id="listContainer" alignment="CENTER">
+            <VBox fx:id="title" alignment="CENTER">
                <children>
                   <Label fx:id="title" text="L A   L I S T E   D E S   J E U X " style="-fx-font-size: 34px; -fx-font-family: 'Dosis', sans-serif;" />
                </children>

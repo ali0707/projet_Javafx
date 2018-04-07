@@ -1,16 +1,11 @@
 package Controllers;
 
 import Core.Main;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -25,6 +20,8 @@ public class HeaderController implements Initializable{
     public Button signOutBtn;
     @FXML
     public Button editProfileBtn;
+    @FXML
+    public Button adminBtn;
 
     @FXML
     private Button loginLink;
@@ -52,31 +49,6 @@ public class HeaderController implements Initializable{
     private static VBox parentMenu;
     private static VBox shopMenu;
     private static VBox eventMenu;
-
-    @FXML
-    public void kidsCombo(){
-
-    }
-
-    @FXML
-    public void shopCombo(){
-
-    }
-
-    @FXML
-    public void parentCombo(){
-
-    }
-
-    @FXML
-    public void eventsCombo(){
-
-    }
-
-    public void showKidMenu(){
-        childMenu.setOpacity(0);
-        childMenu.setStyle("-fx-text-fill: #f0c24b");
-    }
 
     public void init() {
         parentToggle = (VBox) Main.sp.lookup("#parentToggle");
@@ -132,11 +104,11 @@ public class HeaderController implements Initializable{
         loginLink.setOnAction(e -> new UsersController().showLogin());
         signOutBtn.setOnAction( e -> new UsersController().logOut());
         home.setOnAction(e -> new IndexController().init());
+        adminBtn.setOnAction(e -> new AdminController().init());
     }
 
     private double guestY(VBox v){
         double childrenHeight = (v.getChildren().size() * 30) / 2;
         return 190 - Main.screen.getHeight()/ 2 + childrenHeight;
     }
-
 }

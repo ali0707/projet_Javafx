@@ -4,6 +4,8 @@ import Core.Exceptions.UserNotFoundException;
 import Entities.Photo;
 import Entities.User;
 import Entities.UserInfos;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.*;
 
@@ -13,6 +15,7 @@ public class UserService extends Service {
         String sql = "SELECT * FROM user WHERE id = "+ id ;
         return getUser(sql);
     }
+
     public User findLogin(String login) throws UserNotFoundException {
         login = login.toLowerCase();
         String sql = "SELECT * FROM user WHERE ";
@@ -30,7 +33,6 @@ public class UserService extends Service {
         try {
             Statement stm = this .connection.createStatement();
             ResultSet rs = stm.executeQuery(sql);
-            Integer infosId = null, photoId = null;
             while(rs.next()){
                 u = new User();
                 u.setId(rs.getInt("id"));
@@ -40,26 +42,11 @@ public class UserService extends Service {
                 u.setPassword(rs.getString("password"));
                 u.setSalt(rs.getString("salt"));
                 u.setRoles(rs.getString("roles"));
-                infosId = rs.getInt("infos_id");
-            }
-            UserInfos ui = null;
-            if (u != null && infosId != 0 ){
-                rs = stm.executeQuery("SELECT * FROM user_infos WHERE id = " + infosId);
-                while (rs.next()){
-                    ui = new UserInfos();
-                    ui.setId(infosId);
-                    ui.setFirstname(rs.getString("firstname"));
-                    ui.setLastname(rs.getString("lastname"));
-                    ui.setPhone(rs.getInt("phone"));
-                    ui.setRegion("region");
-                    photoId = rs.getInt("photo_id");
-                }
+                int infosId = rs.getInt("infos_id");
+                UserInfos ui = null;
+                if (infosId != 0)
+                    ui = getUserInfos(infosId);
                 u.setUserInfos(ui);
-                Photo p = null;
-                if (photoId != 0){
-                    p = new PhotoService().findImage(photoId);
-                }
-                ui.setPhoto(p);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -88,5 +75,55 @@ public class UserService extends Service {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public ObservableList<User> findAll() {
+        String sql = "SELECT * FROM user";
+        ObservableList<User> users = FXCollections.observableArrayList();
+        try {
+            Statement stm = this.connection.createStatement();
+            ResultSet rs = stm.executeQuery(sql);
+            while(rs.next()) {
+                User u = new User();
+                u.setId(rs.getInt("id"));
+                u.setEmail(rs.getString("email"));
+                u.setEnabled(rs.getBoolean("enabled"));
+                u.setUsername(rs.getString("username"));
+                u.setPassword(rs.getString("password"));
+                u.setSalt(rs.getString("salt"));
+                u.setRoles(rs.getString("roles"));
+                u.setLastLogin(rs.getTimestamp("last_login"));
+                int infosId = rs.getInt("infos_id");
+                UserInfos ui = null;
+                if(infosId != 0)
+                    ui = getUserInfos(infosId);
+                u.setUserInfos(ui);
+                users.add(u);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return users;
+    }
+
+    private UserInfos getUserInfos(int infosId) throws SQLException {
+        UserInfos ui = new UserInfos();
+        Statement stm = this.connection.createStatement();
+        ResultSet rs = stm.executeQuery("SELECT * FROM user_infos WHERE id = " + infosId);
+        while (rs.next()) {
+            ui = new UserInfos();
+            ui.setId(infosId);
+            ui.setFirstname(rs.getString("firstname"));
+            ui.setLastname(rs.getString("lastname"));
+            ui.setPhone(rs.getInt("phone"));
+            ui.setRegion("region");
+            int photoId = rs.getInt("photo_id");
+            Photo p = null;
+            if (photoId != 0) {
+                p = new PhotoService().findImage(photoId);
+            }
+            ui.setPhoto(p);
+        }
+        return ui;
     }
 }

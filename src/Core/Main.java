@@ -41,6 +41,7 @@ public class Main extends Application {
         pane = new BorderPane();
         pane.getStylesheets().add("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700");
         pane.getStylesheets().add("https://fonts.googleapis.com/css?family=Dosis:300,400,600,700,800");
+        pane.getStylesheets().add("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700");
         pane.getStylesheets().add("/assets/css/styles.css");
         VBox top = null;
         try {

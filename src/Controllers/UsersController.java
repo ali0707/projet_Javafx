@@ -173,6 +173,10 @@ public class UsersController{
         signOutBtn.setPrefWidth(Region.USE_COMPUTED_SIZE);
         HBox profileHolder = (HBox) Main.scene.lookup("#profileHolder");
         profileHolder.setPrefWidth(Region.USE_COMPUTED_SIZE);
+        if(u.hasRole("ADMIN")){
+            HBox adminLink = (HBox) Main.sp.lookup("#adminLink");
+            adminLink.setPrefWidth(Region.USE_COMPUTED_SIZE);
+        }
         if(u.getUserInfos() != null){
             profileBtn.setText(u.getFullname());
             profileBtn.setPrefWidth(Region.USE_COMPUTED_SIZE);
@@ -193,9 +197,14 @@ public class UsersController{
         signOutBtn.setPrefWidth(0);
         HBox profileHolder = (HBox) Main.scene.lookup("#profileHolder");
         profileHolder.setPrefWidth(0);
+        HBox adminLink = (HBox) Main.sp.lookup("#adminBtn");
+        adminLink.setPrefWidth(0);
+
         loginLink.setPrefWidth(Region.USE_COMPUTED_SIZE);
         Button profileBtn = (Button) Main.sp.lookup("#profileBtn");
         profileBtn.setText("");
+        Button editProfile = (Button) Main.scene.lookup("#editProfileBtn");
+        editProfile.setPrefWidth(0);
         new IndexController().init();
     }
 }

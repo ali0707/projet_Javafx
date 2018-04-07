@@ -68,40 +68,54 @@ public class MusicController extends PlanetController{
     }
 
     private void playSong(int index, char dir) {
-        if (mediaPlayer != null)
-            mediaPlayer.stop();
-        if(index != -1)
-            current_song = index;
-        if(dir == 'P' && current_song > 0)
-            current_song--;
-        if(dir == 'N' && current_song < songs.size()-1)
-            current_song++;
-        ImageView image = (ImageView) content.lookup("#image");
-        Label title = (Label) content.lookup("#title");
-        if(songs.get(current_song).getPhoto() != null)
-            image.setImage(new Image(songs.get(current_song).getPhoto().getWebPath()));
-        title.setText(songs.get(current_song).getTitle());
-        if(!playing){
+        if(dir != 'C'){
+            if(index != -1) {
+                current_song = index;
+            }else if(dir == 'P' || dir == 'N'){
+                if(dir == 'P' && current_song > 0)
+                    current_song--;
+                else if(dir == 'P')
+                    current_song = songs.size()-1;
+                if(dir == 'N' && current_song < songs.size()-1)
+                    current_song++;
+                else if (dir == 'N')
+                    current_song = 0;
+            }
             if(mediaPlayer != null)
                 mediaPlayer.stop();
+            ImageView image = (ImageView) content.lookup("#image");
+            Label title = (Label) content.lookup("#title");
+            if(songs.get(current_song).getPhoto() != null)
+                image.setImage(new Image(songs.get(current_song).getPhoto().getWebPath()));
+            title.setText(songs.get(current_song).getTitle());
+            Media hit = new Media(new File(songs.get(current_song).getWebPath()).toURI().toString());
+            mediaPlayer = new MediaPlayer(hit);
+            mediaPlayer.play();
             ImageView playImage = new ImageView(new Image("assets/images/pause.png"));
             play.setGraphic(playImage);
-            if(mediaPlayer != null && mediaPlayer.getStatus() == MediaPlayer.Status.PAUSED){
-                mediaPlayer.play();
-            }
-            else{
+            playing = !playing;
+        }
+        if(!playing && dir == 'C'){
+            ImageView playImage = new ImageView(new Image("assets/images/pause.png"));
+            play.setGraphic(playImage);
+            playing = !playing;
+            if(mediaPlayer == null){
+                ImageView image = (ImageView) content.lookup("#image");
+                Label title = (Label) content.lookup("#title");
+                if(songs.get(current_song).getPhoto() != null)
+                    image.setImage(new Image(songs.get(current_song).getPhoto().getWebPath()));
+                title.setText(songs.get(current_song).getTitle());
                 Media hit = new Media(new File(songs.get(current_song).getWebPath()).toURI().toString());
                 mediaPlayer = new MediaPlayer(hit);
-                start = System.currentTimeMillis();
-                mediaPlayer.play();
             }
+            mediaPlayer.play();
         }
-        else {
+        else if (playing && dir == 'C') {
             ImageView playImage = new ImageView(new Image("assets/images/play.png"));
+            playing = !playing;
             play.setGraphic(playImage);
             mediaPlayer.pause();
         }
-        playing = !playing;
     }
 
     public void showPlaylist(ObservableList<Music> songs) {
