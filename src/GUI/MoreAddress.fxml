@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../assets/css/styles.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ListView fx:id="categories" prefHeight="200.0" prefWidth="200.0" />
+      <VBox prefHeight="400.0" prefWidth="500.0">
+         <children>
+            <VBox fx:id="main">
+               <children>
+                  <ImageView fx:id="image" fitHeight="200.0" fitWidth="600.0" pickOnBounds="true" styleClass="card-image" />
+                  <Label fx:id="name" prefHeight="17.0" prefWidth="507.0" />
+                  <Label fx:id="description" prefHeight="103.0" prefWidth="504.0" />
+                  <Label fx:id="phone" prefHeight="17.0" prefWidth="510.0" />
+                  <Label fx:id="description" />
+                  <Label fx:id="location" />
+               </children>
+            </VBox>
+            <VBox fx:id="map" prefHeight="200.0" prefWidth="100.0" />
+         </children>
+      </VBox>
+   </children>
+   <styleClass>
+      <String fx:value="card" />
+      <String fx:value="card-body" />
+      <String fx:value="bg-color-3" />
+   </styleClass>
+</HBox>

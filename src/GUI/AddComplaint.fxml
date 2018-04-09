@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="423.0" prefWidth="325.0" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField fx:id="subject" accessibleRole="COMBO_BOX" prefHeight="0.0" prefWidth="325.0" styleClass="loginbox" stylesheets="@../assets/css/styles.css" text="Sujet" />
+      <ComboBox fx:id="category" prefHeight="39.0" prefWidth="325.0" promptText="Categorie" />
+      <TextField fx:id="description" prefHeight="39.0" prefWidth="325.0" styleClass="loginbox" stylesheets="@../assets/css/styles.css" text="Ecrivez votre message" />
+      <Button fx:id="submit" mnemonicParsing="false" prefHeight="39.0" prefWidth="109.0" styleClass="btn-primary" stylesheets="@../assets/css/styles.css" text="Envoyer" />
+      <Button fx:id="history" mnemonicParsing="false" stylesheets="@../assets/css/styles.css" text="Afficher historique">
+         <styleClass>
+            <String fx:value="btn" />
+            <String fx:value="btn-primary" />
+         </styleClass>
+      </Button>
+   </children>
+</VBox>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.web.WebView?>
+
+<VBox prefHeight="400.0" prefWidth="600.0" stylesheets="@../assets/css/styles.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <HBox>
+         <children>
+            <ImageView fx:id="image" fitHeight="402.0" fitWidth="305.0" pickOnBounds="true" preserveRatio="true" />
+            <VBox prefHeight="402.0" prefWidth="304.0">
+               <children>
+                  <WebView fx:id="desc" maxHeight="-1.0" maxWidth="-1.0" minHeight="-1.0" minWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" />
+                  <Label fx:id="title" />
+                  <HBox>
+                     <children>
+                        <Label fx:id="subject" prefHeight="17.0" prefWidth="165.0" />
+                        <Label fx:id="date" prefHeight="17.0" prefWidth="151.0" />
+                     </children>
+                  </HBox>
+                  <Label fx:id="auteur" />
+                  <Label fx:id="description" />
+                  <Button fx:id="more" mnemonicParsing="false" text="More" underline="true">
+                     <effect>
+                        <Blend />
+                     </effect>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+   <styleClass>
+      <String fx:value="card" />
+      <String fx:value="card-body" />
+      <String fx:value="bg-color-1" />
+   </styleClass>
+</VBox>
