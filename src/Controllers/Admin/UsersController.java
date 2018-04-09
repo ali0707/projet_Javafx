@@ -5,7 +5,6 @@ import Dependencies.pherialize.MixedArray;
 import Dependencies.pherialize.Pherialize;
 import Entities.User;
 import Services.UserService;
-import de.jensd.fx.glyphs.materialdesignicons.MaterialDesignIcon;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -132,3 +131,4 @@ public class UsersController {
 
 
 }
+

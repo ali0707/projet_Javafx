@@ -97,7 +97,7 @@ public class Security {
     public static void checkRemembered() {
         BufferedReader in;
         try {
-            in = new BufferedReader(new FileReader("./src/assets/remembered.txt"));
+            in = new BufferedReader(new FileReader(Config.logFilePath));
             String c;
             while ((c = in.readLine()) != null) {
                 User u = new UserService().findUser(Integer.parseInt(c));

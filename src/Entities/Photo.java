@@ -1,8 +1,13 @@
 package Entities;
 
+import Core.Config;
+
+import java.io.File;
 import java.util.Objects;
 
 public class Photo {
+
+    private File file;
 
     public Photo(String url, String alt) {
         this.url = url;
@@ -20,7 +25,13 @@ public class Photo {
     private String alt;
 
     public Photo() {
+    }
 
+    public Photo(File file) {
+        this.file = file;
+        String[] name = file.getName().split("\\.");
+        this.setUrl(name[1]);
+        this.setAlt(name[0]);
     }
 
     public int getId() {
@@ -64,6 +75,10 @@ public class Photo {
     }
 
     public String getWebPath(){
-        return "file:C:/xampp/htdocs/PIDEV/web/uploads/img/" + id + '.' +  url;
+        return Config.serverPath + "img/" + id + '.' +  url;
+    }
+
+    public void moveToServer() {
+        this.file.renameTo(new File(Config.serverPath + "img/" + id + "." + url));
     }
 }

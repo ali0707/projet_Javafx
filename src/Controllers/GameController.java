@@ -83,18 +83,6 @@ public class GameController extends PlanetController{
         GameController.planet.getChildren().add(content);
     }
 
-//    public void addGame(){
-//        List list = new ArrayList<String>();
-//        list.add("1");
-//        list.add("2");
-//        list.add("3");
-//        String devs = Pherialize.serialize(list);
-//        Game g = new Game(3,"game", "url",1,devs, 1, 2);
-//        GameService gs = new GameService();
-//
-//        gs.addGame(g);
-//    }
-
     public void deleteGame(int id){
         GameService gs = new GameService();
         gs.deleteObject(id, "game");
@@ -139,7 +127,6 @@ public class GameController extends PlanetController{
         g.setName("new game");
         gs.updateGame(g);
         g = gs.findGame(id);
-        System.out.print(g);
     }
 
     private Double ColumnMaxWidth( double parentW , int columnCount, double spacing ){

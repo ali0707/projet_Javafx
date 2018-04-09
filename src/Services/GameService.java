@@ -12,12 +12,26 @@ import java.util.TimeZone;
 public class GameService extends Service {
 
     public void addGame(Game g){
+
+        String sqlPhoto = "INSERT INTO photos (url, alt) " +
+                "VALUES (?,?)";
+
         String sql =
                 "INSERT INTO game (icon_id, name, url, age, device, category_id, gender) " +
                 "VALUES (?,?,?,?,?,?,?)";
         try {
-            PreparedStatement ps = this.connection.prepareStatement(sql);
-            ps.setInt(1, g.getIcon().getId());
+            PreparedStatement ps = this.connection.prepareStatement(sqlPhoto, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, g.getIcon().getUrl());
+            ps.setString(2, g.getIcon().getAlt());
+            ps.executeUpdate();
+            int photoId = 0;
+            ResultSet rs = ps.getGeneratedKeys();
+            while (rs.next()){
+                photoId = rs.getInt(1);
+            }
+            g.getIcon().setId(photoId);
+            ps = this.connection.prepareStatement(sql);
+            ps.setInt(1, photoId);
             ps.setString(2, g.getName());
             ps.setString(3, g.getUrl());
             ps.setInt(4, g.getAge());
@@ -25,6 +39,7 @@ public class GameService extends Service {
             ps.setInt(6, g.getCategoryId());
             ps.setInt(7, g.getGender());
             ps.executeUpdate();
+            g.getIcon().moveToServer();
             System.out.println("Le jeu a été ajouté avec succes");
         } catch (SQLException e) {
             e.printStackTrace();

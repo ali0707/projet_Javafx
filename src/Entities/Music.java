@@ -1,28 +1,30 @@
 package Entities;
 
 import java.sql.Time;
+import java.util.Date;
 import java.util.Objects;
 
 public class Music {
 
     private int id;
     private String title;
-    private Integer duration;
+    private Date duration;
     private String singer;
     private Photo photo;
     private String url;
     private String alt;
 
-    public Music(String title, Integer duration, String singer, Photo photo, String url, String alt) {
+    public Music(String title, Date duration, String singer, Photo photo, String url, String alt) {
         this.title = title;
         this.duration = duration;
         this.singer = singer;
         this.photo = photo;
         this.url = url;
+        this.url = url;
         this.alt = alt;
     }
 
-    public Music(int id, String title, Integer duration, String singer, Photo photo, String url, String alt) {
+    public Music(int id, String title, Date duration, String singer, Photo photo, String url, String alt) {
         this.id = id;
         this.title = title;
         this.duration = duration;
@@ -54,11 +56,11 @@ public class Music {
     }
 
 
-    public Integer getDuration() {
+    public Date getDuration() {
         return duration;
     }
 
-    public void setDuration(Integer duration) {
+    public void setDuration(Date duration) {
         this.duration = duration;
     }
 

@@ -218,3 +218,26 @@
     -fx-font-family: "Source Sans Pro", sans-serif;
     -fx-font-weight: bold;
 }
+
+.check-box .box{
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1px;
+}
+
+.check-box:selected .mark {
+
+    -fx-background-color: #2f3c43;
+
+}
+
+.radio-button .radio{
+    -fx-border-color: #cccccc;
+    -fx-border-radius: 100%;
+    -fx-border-width: 1px;
+}
+
+.radio-button:selected .dot {
+
+    -fx-background-color: #2f3c43;
+
+}

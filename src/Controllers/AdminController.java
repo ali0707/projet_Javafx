@@ -1,5 +1,7 @@
 package Controllers;
 
+import Controllers.Admin.GamesController;
+import Controllers.Admin.MusicController;
 import Core.Main;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
@@ -49,7 +51,7 @@ public class AdminController {
             users.getChildren().addAll(listUsers, addUser);
             users.setExpanded(true);
 
-            TreeItem<String> games = new TreeItem<>("Jeux");
+            TreeItem<String> games = new TreeItem<>("Liste des jeux");
             fa = new FontAwesomeIconView(FontAwesomeIcon.GAMEPAD);
             games.setGraphic(fa);
             games.setExpanded(true);
@@ -59,12 +61,17 @@ public class AdminController {
             addGame.setGraphic(fa);
             games.getChildren().add(addGame);
 
+            TreeItem<String> songs = new TreeItem<>("Liste des chansons");
+            fa = new FontAwesomeIconView(FontAwesomeIcon.MUSIC);
+            songs.setGraphic(fa);
+            songs.setExpanded(true);
+
             TreeItem<String> root = new TreeItem<>();
 
             root.setExpanded(true);
             root.setGraphic(null);
 
-            root.getChildren().addAll(dashboard, users, games);
+            root.getChildren().addAll(dashboard, users, games,songs);
             treeView.setRoot(root);
             treeView.setShowRoot(false);
             treeView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -75,6 +82,13 @@ public class AdminController {
                     case "Ajouter un membre":
                         new Controllers.Admin.UsersController().addUser();
                         break;
+                    case "Liste des jeux":
+                        new GamesController().init();
+                        break;
+                    case "Ajouter un jeu":
+                        new GamesController().addGame();
+                    case "Liste des chansons":
+                        new MusicController().init();
                 }
             });
             sidebar.getChildren().add(treeView);

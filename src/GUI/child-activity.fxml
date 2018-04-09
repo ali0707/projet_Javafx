@@ -23,7 +23,7 @@
                         <Image url="@../assets/images/shape-left.png" />
                      </image>
                   </ImageView>
-                  <Label style="-fx-font-family: 'Dosis', sans-serif;" styleClass="section-title" text="Label" />
+                  <Label style="-fx-font-family: 'Dosis', sans-serif;" styleClass="section-title" text="ACTIVITÉ  DE L'ENFANT" />
                   <ImageView pickOnBounds="true" preserveRatio="true" rotate="180.0">
                      <image>
                         <Image url="@../assets/images/shape-left.png" />
@@ -31,6 +31,7 @@
                   </ImageView>
                </children>
             </HBox>
+            <HBox />
             <HBox layoutX="10.0" layoutY="27.0">
                <children>
                   <TabPane tabClosingPolicy="UNAVAILABLE">

@@ -17,12 +17,11 @@ public class MusicService extends Service {
             PreparedStatement ps = this.connection.prepareStatement(sql);
             ps.setString(1, m.getTitle());
             ps.setString(2, m.getUrl());
-            ps.setTime(3,new Time(m.getDuration()* 1000));
+            ps.setTime(3,new Time(m.getDuration().getTime()* 1000));
             ps.setString(4, m.getSinger());
             ps.setInt(5, m.getPhoto().getId());
             ps.setString(6, m.getAlt());
             ps.executeUpdate();
-            System.out.println("Le music a été ajouté avec succes");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -39,7 +38,7 @@ public class MusicService extends Service {
             ps.setString(2, m.getUrl());
             ps.setString(3, m.getSinger());
             ps.setInt(4, m.getPhoto().getId());
-            ps.setTime(5, new Time(m.getDuration()));
+            ps.setTime(5, new Time(m.getDuration().getTime()));
             ps.executeUpdate();
             System.out.println("Le music a été modifié avec succes");
         } catch (SQLException e) {
@@ -66,7 +65,7 @@ public class MusicService extends Service {
                     p = new PhotoService().findImage(photoId);
                 }
                 m.setPhotoId(p);
-                m.setDuration((int) rs.getTime("duration").getTime() / 1000);
+                m.setDuration(new Date(rs.getTime("duration").getTime() / 1000));
                 m.setAlt(rs.getString("alt"));
             }
         } catch (SQLException e) {
@@ -103,7 +102,7 @@ public class MusicService extends Service {
                     p = new PhotoService().findImage(photoId);
                 }
                 m.setPhotoId(p);
-                m.setDuration((int) rs.getTime("duration").getTime() / 1000);
+                m.setDuration(new Date(rs.getTime("duration").getTime() / 1000));
                 m.setAlt(rs.getString("alt"));
                 musics.add(m);
             }
