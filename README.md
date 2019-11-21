@@ -40,3 +40,4 @@
     <li>Créer un controlleur avec une méthode init() qui charge le fichier fxml crée et mettre son contenu dans Main.pane.setCenter() (voir IndexController)</li>
 </ol>
   
+# projet_Javafx
